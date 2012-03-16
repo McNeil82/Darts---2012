@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Spielerverwaltung));
             this.SuspendLayout();
             // 
             // Spielerverwaltung
@@ -36,10 +37,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(284, 265);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Spielerverwaltung";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Spielerverwaltung";
             this.ResumeLayout(false);
+
         }
 
         #endregion

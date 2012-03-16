@@ -28,22 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.flowLayout = new System.Windows.Forms.FlowLayoutPanel();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Darts));
             this.mainMenu = new System.Windows.Forms.MenuStrip();
             this.spielerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.flowLayout.SuspendLayout();
+            this.board = new System.Windows.Forms.PictureBox();
             this.mainMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.board)).BeginInit();
             this.SuspendLayout();
-            // 
-            // flowLayout
-            // 
-            this.flowLayout.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.flowLayout.Controls.Add(this.mainMenu);
-            this.flowLayout.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayout.Location = new System.Drawing.Point(0, 0);
-            this.flowLayout.Name = "flowLayout";
-            this.flowLayout.Size = new System.Drawing.Size(784, 765);
-            this.flowLayout.TabIndex = 0;
             // 
             // mainMenu
             // 
@@ -51,8 +42,8 @@
             this.spielerToolStripMenuItem});
             this.mainMenu.Location = new System.Drawing.Point(0, 0);
             this.mainMenu.Name = "mainMenu";
-            this.mainMenu.Size = new System.Drawing.Size(213, 24);
-            this.mainMenu.TabIndex = 0;
+            this.mainMenu.Size = new System.Drawing.Size(984, 24);
+            this.mainMenu.TabIndex = 1;
             this.mainMenu.Text = "mainMenu";
             // 
             // spielerToolStripMenuItem
@@ -62,29 +53,46 @@
             this.spielerToolStripMenuItem.Text = "Spielerverwaltung";
             this.spielerToolStripMenuItem.Click += new System.EventHandler(this.spielerToolStripMenuItem_Click);
             // 
+            // board
+            // 
+            this.board.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.board.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.board.Image = global::Darts_2012.Properties.Resources.board;
+            this.board.Location = new System.Drawing.Point(0, 0);
+            this.board.Name = "board";
+            this.board.Size = new System.Drawing.Size(984, 965);
+            this.board.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.board.TabIndex = 2;
+            this.board.TabStop = false;
+            this.board.Paint += new System.Windows.Forms.PaintEventHandler(this.board_Paint);
+            // 
             // Darts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(784, 765);
-            this.Controls.Add(this.flowLayout);
-            this.MainMenuStrip = this.mainMenu;
+            this.ClientSize = new System.Drawing.Size(984, 965);
+            this.Controls.Add(this.mainMenu);
+            this.Controls.Add(this.board);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Darts";
             this.Text = "Darts";
-            this.flowLayout.ResumeLayout(false);
-            this.flowLayout.PerformLayout();
             this.mainMenu.ResumeLayout(false);
             this.mainMenu.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.board)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.FlowLayoutPanel flowLayout;
         private System.Windows.Forms.MenuStrip mainMenu;
         private System.Windows.Forms.ToolStripMenuItem spielerToolStripMenuItem;
+        private System.Windows.Forms.PictureBox board;
+
+
+
     }
 }
 
