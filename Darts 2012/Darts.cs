@@ -26,8 +26,8 @@ namespace Darts_2012
 
         private void board_Paint(object sender, PaintEventArgs e)
         {
-            Point middle = new Point((board.Width / 2) + 5, (board.Height / 2) - 4);
-            BoardGrid boardGrid = new BoardGrid(middle, board.Width, board.Height);
+            Point center = new Point((board.Width / 2) + 5, (board.Height / 2) - 4);
+            BoardGrid boardGrid = new BoardGrid(center, board.Width, board.Height);
             boardGrid.drawGrid(e.Graphics);
         }
     }
