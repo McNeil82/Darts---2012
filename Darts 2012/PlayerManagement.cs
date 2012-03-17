@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace Darts_2012
 {
-    public partial class Spielerverwaltung : Form
+    public partial class PlayerManagement : Form
     {
-        public Spielerverwaltung()
+        public PlayerManagement()
         {
             InitializeComponent();
         }

@@ -1,6 +1,6 @@
 ﻿namespace Darts_2012
 {
-    partial class Spielerverwaltung
+    partial class PlayerManagement
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Spielerverwaltung));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PlayerManagement));
             this.SuspendLayout();
             // 
             // Spielerverwaltung

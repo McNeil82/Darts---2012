@@ -76,6 +76,7 @@
             this.Controls.Add(this.board);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Darts";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Darts";
             this.mainMenu.ResumeLayout(false);
             this.mainMenu.PerformLayout();
