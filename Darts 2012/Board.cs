@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 
@@ -8,16 +7,6 @@ namespace Darts_2012
 {
     class Board
     {
-        enum Outline
-        {
-            Bullseye,
-            Bull,
-            InnerSingle,
-            Triple,
-            OuterSingle,
-            Double
-        }
-
         private readonly List<Slice> _slices = new List<Slice>
                             {
                                 new Slice(20, 261),
@@ -42,18 +31,21 @@ namespace Darts_2012
                                 new Slice(5, 243)
                             };
 
-        private readonly OrderedDictionary _circles = new OrderedDictionary
-                                   {
-                                       {Outline.Bullseye, new Circle(15, 0, 50)},
-                                       {Outline.Bull, new Circle(35, 0, 25)},
-                                       {Outline.InnerSingle, new Circle(188, 0, 1)},
-                                       {Outline.Triple, new Circle(209, -1, 3)},
-                                       {Outline.OuterSingle, new Circle(313, -1, 1)},
-                                       {Outline.Double, new Circle(335, -1, 2)}
-                                   };
+        private static readonly List<Circle> Circles = new List<Circle>
+                                                           {
+                                new Circle(15, 0, 50),
+                                new Circle(35, 0, 25),
+                                new Circle(188, 0, 1),
+                                new Circle(209, -1, 3),
+                                new Circle(313, -1, 1),
+                                new Circle(335, -1, 2)
+                            };
 
         private readonly List<Piece> _circlePieces = new List<Piece>();
         private readonly List<Piece> _slicePieces = new List<Piece>();
+
+        private readonly int _outmostCircleRadius = Circles[Circles.Count - 1].Radius;
+        private readonly int _outmostCircleOffset = Circles[Circles.Count - 1].Offset;
 
         public Board()
         {
@@ -62,24 +54,19 @@ namespace Darts_2012
 
         private void InitializePieces()
         {
-            AddPiece(Outline.Bullseye);
-            AddPiece(Outline.Bull);
-            AddPiece(Outline.InnerSingle);
-            AddPiece(Outline.Triple);
-            AddPiece(Outline.OuterSingle);
-            AddPiece(Outline.Double);
-
-            for (var sliceIndex = 0; sliceIndex < _slices.Count; ++sliceIndex)
+            foreach (var circle in Circles)
             {
-                var outerCircle = (Circle)_circles[Outline.Double];
-                var slice = _slices[sliceIndex];
-                AddPiece(outerCircle, slice);
+                AddPiece(circle);
+            }
+
+            foreach (var slice in _slices)
+            {
+                AddPiece(slice);
             }
         }
 
-        private void AddPiece(Outline outline)
+        private void AddPiece(Circle circle)
         {
-            var circle = (Circle)_circles[outline];
             var radius = circle.Radius;
             var offset = circle.Offset;
             var x = -radius + offset;
@@ -89,14 +76,15 @@ namespace Darts_2012
             _circlePieces.Add(new Piece(circle.Value, graphicsPath));
         }
 
-        private void AddPiece(Circle outerCircle, Slice slice)
+        private void AddPiece(Slice slice)
         {
             var polygonPoints = new PointF[20];
 
-            for (var outerCircleIndex = 0; outerCircleIndex < 19; ++outerCircleIndex)
+            for (var angleIndex = 0; angleIndex < 19; ++angleIndex)
             {
-                polygonPoints[outerCircleIndex] = new PointF(XOnCircle(slice.BeginAngle + outerCircleIndex, outerCircle.Radius) + outerCircle.Offset,
-                    YOnCircle(slice.BeginAngle + outerCircleIndex, outerCircle.Radius) + outerCircle.Offset);
+                var circlePointX = XOnCircle(slice.BeginAngle + angleIndex, _outmostCircleRadius) + _outmostCircleOffset;
+                var circlePointY = YOnCircle(slice.BeginAngle + angleIndex, _outmostCircleRadius) + _outmostCircleOffset;
+                polygonPoints[angleIndex] = new PointF(circlePointX, circlePointY);
             }
             polygonPoints[19] = new PointF(0, 0);
 
@@ -117,7 +105,7 @@ namespace Darts_2012
 
         public int GetPoints(int mouseX, int mouseY, int centerX, int centerY)
         {
-            var circlePoints = 0;
+            var points = 0;
             var gridX = mouseX - centerX;
             var gridY = mouseY - centerY;
 
@@ -131,7 +119,7 @@ namespace Darts_2012
                         return circle.Value;
                     }
 
-                    circlePoints = circle.Value;
+                    points = circle.Value;
                     break;
                 }
             }
@@ -140,11 +128,11 @@ namespace Darts_2012
             {
                 if (slice.GraphicsPath.IsVisible(gridX, gridY))
                 {
-                    return circlePoints * slice.Value;
+                    return points * slice.Value;
                 }
             }
 
-            return circlePoints;
+            return points;
         }
     }
 }
