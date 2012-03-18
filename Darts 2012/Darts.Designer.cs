@@ -51,7 +51,7 @@
             this.spielerToolStripMenuItem.Name = "spielerToolStripMenuItem";
             this.spielerToolStripMenuItem.Size = new System.Drawing.Size(113, 20);
             this.spielerToolStripMenuItem.Text = "Spielerverwaltung";
-            this.spielerToolStripMenuItem.Click += new System.EventHandler(this.spielerToolStripMenuItem_Click);
+            this.spielerToolStripMenuItem.Click += new System.EventHandler(this.SpielerToolStripMenuItemClick);
             // 
             // board
             // 
@@ -64,7 +64,7 @@
             this.board.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.board.TabIndex = 2;
             this.board.TabStop = false;
-            this.board.Paint += new System.Windows.Forms.PaintEventHandler(this.board_Paint);
+            this.board.Paint += new System.Windows.Forms.PaintEventHandler(this.BoardPaint);
             // 
             // Darts
             // 

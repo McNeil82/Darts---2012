@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
 
 namespace Darts_2012
 {
@@ -12,158 +9,114 @@ namespace Darts_2012
     {
         enum Cicles
         {
-            POINT_OF_ORIGIN,
-            BULLSEYE,
-            BULL,
-            INNER_SINGLE,
-            TRIPLE,
-            OUTER_SINGLE,
-            DOUBLE
+            PointOfOrigin,
+            Bullseye,
+            Bull,
+            InnerSingle,
+            Triple,
+            OuterSingle,
+            Double
         }
 
-        private const string OFFSET = "offset";
-        private const string RADIUS = "radius";
+        private const string Offset = "offset";
+        private const string Radius = "radius";
 
-        private static Brush cyanBrush = new SolidBrush(Color.Cyan);
-        private static Pen cyanPen = new Pen(Color.Cyan);
-        private static Brush yellowBrush = new SolidBrush(Color.Yellow);
+        private static readonly Brush YellowBrush = new SolidBrush(Color.Yellow);
 
-        private Point center;
-        private int width;
-        private int height;
-        private List<SolidBrush> brushes;
-        private OrderedDictionary angleOfNumbers;
-        private OrderedDictionary radiiAndOffsets;
+        private Point _center;
+        private readonly int _width;
+        private readonly int _height;
+        private readonly List<SolidBrush> _brushes = new List<SolidBrush>(4)
+                           {
+                               new SolidBrush(Color.Red),
+                               new SolidBrush(Color.Green),
+                               new SolidBrush(Color.Black),
+                               new SolidBrush(Color.White)
+                           };
+        private readonly OrderedDictionary _angleOfNumbers = new OrderedDictionary
+                                  {
+                                      {20, 261},
+                                      {1, 279},
+                                      {18, 297},
+                                      {4, 315},
+                                      {13, 333},
+                                      {6, 351},
+                                      {10, 9},
+                                      {15, 27},
+                                      {2, 45},
+                                      {17, 63},
+                                      {3, 81},
+                                      {19, 99},
+                                      {7, 117},
+                                      {16, 135},
+                                      {8, 153},
+                                      {11, 171},
+                                      {14, 189},
+                                      {9, 207},
+                                      {12, 225},
+                                      {5, 243}
+                                  };
+        private readonly OrderedDictionary _radiiAndOffsets = new OrderedDictionary
+                                   {
+                                       {Cicles.PointOfOrigin, new HybridDictionary { { Radius, 0 }, { Offset, 0 } }},
+                                       {Cicles.Bullseye, new HybridDictionary { { Radius, 15 }, { Offset, 0 } }},
+                                       {Cicles.Bull, new HybridDictionary { { Radius, 35 }, { Offset, 0 } }},
+                                       {Cicles.InnerSingle, new HybridDictionary { { Radius, 188 }, { Offset, 0 } }},
+                                       {Cicles.Triple, new HybridDictionary { { Radius, 209 }, { Offset, -1 } }},
+                                       {Cicles.OuterSingle, new HybridDictionary { { Radius, 313 }, { Offset, -1 } }},
+                                       {Cicles.Double, new HybridDictionary { { Radius, 335 }, { Offset, -1 } }}
+                                   };
 
         public BoardGrid(Point center, int width, int height)
         {
-            this.center = center;
-            this.width = width;
-            this.height = height;
-
-            initializeBrushes();
-            initializeAngles();
-            initializeRadiiAndOffsets();
+            _center = center;
+            _width = width;
+            _height = height;
         }
 
-        private void initializeBrushes()
+        public void DrawGrid(Graphics graphics)
         {
-            brushes = new List<SolidBrush>(4);
-            brushes.Add(new SolidBrush(Color.Red));
-            brushes.Add(new SolidBrush(Color.Green));
-            brushes.Add(new SolidBrush(Color.Black));
-            brushes.Add(new SolidBrush(Color.White));
-        }
+            graphics.TranslateTransform(_center.X, _center.Y);
 
-        private void initializeAngles()
-        {
-            angleOfNumbers = new OrderedDictionary();
-            angleOfNumbers.Add(20, 261);
-            angleOfNumbers.Add(1, 279);
-            angleOfNumbers.Add(18, 297);
-            angleOfNumbers.Add(4, 315);
-            angleOfNumbers.Add(13, 333);
-            angleOfNumbers.Add(6, 351);
-            angleOfNumbers.Add(10, 9);
-            angleOfNumbers.Add(15, 27);
-            angleOfNumbers.Add(2, 45);
-            angleOfNumbers.Add(17, 63);
-            angleOfNumbers.Add(3, 81);
-            angleOfNumbers.Add(19, 99);
-            angleOfNumbers.Add(7, 117);
-            angleOfNumbers.Add(16, 135);
-            angleOfNumbers.Add(8, 153);
-            angleOfNumbers.Add(11, 171);
-            angleOfNumbers.Add(14, 189);
-            angleOfNumbers.Add(9, 207);
-            angleOfNumbers.Add(12, 225);
-            angleOfNumbers.Add(5, 243);
-        }
-
-        private void initializeRadiiAndOffsets()
-        {
-            HybridDictionary pointOfOriginRadiusAndOffset = new HybridDictionary();
-            pointOfOriginRadiusAndOffset.Add(RADIUS, 0);
-            pointOfOriginRadiusAndOffset.Add(OFFSET, 0);
-            HybridDictionary bullsEyeRadiusAndOffset = new HybridDictionary();
-            bullsEyeRadiusAndOffset.Add(RADIUS, 15);
-            bullsEyeRadiusAndOffset.Add(OFFSET, 0);
-            HybridDictionary bullRadiusAndOffset = new HybridDictionary();
-            bullRadiusAndOffset.Add(RADIUS, 35);
-            bullRadiusAndOffset.Add(OFFSET, 0);
-            HybridDictionary innerSingleRadiusAndOffset = new HybridDictionary();
-            innerSingleRadiusAndOffset.Add(RADIUS, 188);
-            innerSingleRadiusAndOffset.Add(OFFSET, 0);
-            HybridDictionary tripleRadiusAndOffset = new HybridDictionary();
-            tripleRadiusAndOffset.Add(RADIUS, 209);
-            tripleRadiusAndOffset.Add(OFFSET, -1);
-            HybridDictionary outerSingleRadiusAndOffset = new HybridDictionary();
-            outerSingleRadiusAndOffset.Add(RADIUS, 313);
-            outerSingleRadiusAndOffset.Add(OFFSET, -1);
-            HybridDictionary doubleRadiusAndOffset = new HybridDictionary();
-            doubleRadiusAndOffset.Add(RADIUS, 335);
-            doubleRadiusAndOffset.Add(OFFSET, -1);
-
-            radiiAndOffsets = new OrderedDictionary();
-            radiiAndOffsets.Add(Cicles.POINT_OF_ORIGIN, pointOfOriginRadiusAndOffset);
-            radiiAndOffsets.Add(Cicles.BULLSEYE, bullsEyeRadiusAndOffset);
-            radiiAndOffsets.Add(Cicles.BULL, bullRadiusAndOffset);
-            radiiAndOffsets.Add(Cicles.INNER_SINGLE, innerSingleRadiusAndOffset);
-            radiiAndOffsets.Add(Cicles.TRIPLE, tripleRadiusAndOffset);
-            radiiAndOffsets.Add(Cicles.OUTER_SINGLE, outerSingleRadiusAndOffset);
-            radiiAndOffsets.Add(Cicles.DOUBLE, doubleRadiusAndOffset);
-        }
-
-        public void drawGrid(Graphics graphics)
-        {
-            graphics.TranslateTransform(center.X, center.Y);
-
-            for (int radiiAndOffsetsIndex = 0; radiiAndOffsetsIndex < radiiAndOffsets.Count - 1; ++radiiAndOffsetsIndex)
+            for (int radiiAndOffsetsIndex = 0; radiiAndOffsetsIndex < _radiiAndOffsets.Count - 1; ++radiiAndOffsetsIndex)
             {
-                for (int angleIndex = 0; angleIndex < angleOfNumbers.Count; ++angleIndex)
+                for (int angleIndex = 0; angleIndex < _angleOfNumbers.Count; ++angleIndex)
                 {
-                    drawDouble(graphics, brushes[angleIndex % 2 + radiiAndOffsetsIndex % 2],
-                           (HybridDictionary)radiiAndOffsets[radiiAndOffsetsIndex], (HybridDictionary)radiiAndOffsets[radiiAndOffsetsIndex + 1],
-                           (int)angleOfNumbers[angleIndex], (int)angleOfNumbers[angleIndex + 1 == angleOfNumbers.Count ? 0 : angleIndex + 1]);
+                    DrawDouble(graphics, _brushes[angleIndex % 2 + radiiAndOffsetsIndex % 2],
+                           (HybridDictionary)_radiiAndOffsets[radiiAndOffsetsIndex], (HybridDictionary)_radiiAndOffsets[radiiAndOffsetsIndex + 1],
+                           (int)_angleOfNumbers[angleIndex], (int)_angleOfNumbers[angleIndex + 1 == _angleOfNumbers.Count ? 0 : angleIndex + 1]);
                 }
             }
 
             graphics.ResetTransform();
-            graphics.FillRectangle(yellowBrush, center.X, 0, 1, height);
-            graphics.FillRectangle(yellowBrush, 0, center.Y, width, 1);
+            graphics.FillRectangle(YellowBrush, _center.X, 0, 1, _height);
+            graphics.FillRectangle(YellowBrush, 0, _center.Y, _width, 1);
         }
 
-        private static void drawDouble(Graphics graphics, Brush brush, HybridDictionary innerCircle, HybridDictionary outerCircle, int beginAngle, int endAngle)
+        private static void DrawDouble(Graphics graphics, Brush brush, HybridDictionary innerCircle, HybridDictionary outerCircle, int beginAngle, int endAngle)
         {
-            PointF[] polygonPoints = new PointF[38];
-            polygonPoints[0] = new PointF(xOnCircle(beginAngle, (int)innerCircle[RADIUS]) + (int)innerCircle[OFFSET], yOnCircle(beginAngle, (int)innerCircle[RADIUS]) + (int)innerCircle[OFFSET]);
-            polygonPoints[1] = new PointF(xOnCircle(beginAngle, (int)outerCircle[RADIUS]) + (int)outerCircle[OFFSET], yOnCircle(beginAngle, (int)outerCircle[RADIUS]) + (int)outerCircle[OFFSET]);
-            for (int i = 2; i < 19; ++i)
+            var polygonPoints = new PointF[38];
+            polygonPoints[0] = new PointF(XOnCircle(beginAngle, (int)innerCircle[Radius]) + (int)innerCircle[Offset], YOnCircle(beginAngle, (int)innerCircle[Radius]) + (int)innerCircle[Offset]);
+            polygonPoints[1] = new PointF(XOnCircle(beginAngle, (int)outerCircle[Radius]) + (int)outerCircle[Offset], YOnCircle(beginAngle, (int)outerCircle[Radius]) + (int)outerCircle[Offset]);
+            for (var outerCircleIndex = 2; outerCircleIndex < 19; ++outerCircleIndex)
             {
-                polygonPoints[i] = new PointF(xOnCircle(beginAngle + (i - 1), (int)outerCircle[RADIUS]) + (int)outerCircle[OFFSET], yOnCircle(beginAngle + (i - 1), (int)outerCircle[RADIUS]) + (int)outerCircle[OFFSET]);
+                polygonPoints[outerCircleIndex] = new PointF(XOnCircle(beginAngle + (outerCircleIndex - 1), (int)outerCircle[Radius]) + (int)outerCircle[Offset], YOnCircle(beginAngle + (outerCircleIndex - 1), (int)outerCircle[Radius]) + (int)outerCircle[Offset]);
             }
-            polygonPoints[19] = new PointF(xOnCircle(endAngle, (int)outerCircle[RADIUS]) + (int)outerCircle[OFFSET], yOnCircle(endAngle, (int)outerCircle[RADIUS]) + (int)outerCircle[OFFSET]);
-            polygonPoints[20] = new PointF(xOnCircle(endAngle, (int)innerCircle[RADIUS]) + (int)innerCircle[OFFSET], yOnCircle(endAngle, (int)innerCircle[RADIUS]) + (int)innerCircle[OFFSET]);
-            for (int i = 21; i < 38; ++i)
+            polygonPoints[19] = new PointF(XOnCircle(endAngle, (int)outerCircle[Radius]) + (int)outerCircle[Offset], YOnCircle(endAngle, (int)outerCircle[Radius]) + (int)outerCircle[Offset]);
+            polygonPoints[20] = new PointF(XOnCircle(endAngle, (int)innerCircle[Radius]) + (int)innerCircle[Offset], YOnCircle(endAngle, (int)innerCircle[Radius]) + (int)innerCircle[Offset]);
+            for (var innerCircleIndex = 21; innerCircleIndex < 38; ++innerCircleIndex)
             {
-                polygonPoints[i] = new PointF(xOnCircle(endAngle - (i - 20), (int)innerCircle[RADIUS]) + (int)innerCircle[OFFSET], yOnCircle(endAngle - (i - 20), (int)innerCircle[RADIUS]) + (int)innerCircle[OFFSET]);
+                polygonPoints[innerCircleIndex] = new PointF(XOnCircle(endAngle - (innerCircleIndex - 20), (int)innerCircle[Radius]) + (int)innerCircle[Offset], YOnCircle(endAngle - (innerCircleIndex - 20), (int)innerCircle[Radius]) + (int)innerCircle[Offset]);
             }
             graphics.FillPolygon(brush, polygonPoints);
         }
 
-        private void drawCircle(Graphics graphics, int radius, int offset)
-        {
-            int x = center.X - radius + offset;
-            int y = center.Y - radius + offset;
-            graphics.DrawEllipse(cyanPen, x, y, radius * 2, radius * 2);
-        }
-
-        private static float xOnCircle(int angle, int radius)
+        private static float XOnCircle(int angle, int radius)
         {
             return radius * (float)Math.Cos(angle * Math.PI / 180);
         }
 
-        private static float yOnCircle(int angle, int radius)
+        private static float YOnCircle(int angle, int radius)
         {
             return radius * (float)Math.Sin(angle * Math.PI / 180);
         }
