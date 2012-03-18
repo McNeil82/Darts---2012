@@ -72,8 +72,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BoardGrid.cs" />
     <Compile Include="Circle.cs" />
+    <Compile Include="Board.cs" />
     <Compile Include="Piece.cs" />
     <Compile Include="Slice.cs" />
     <Compile Include="Darts.cs">

@@ -31,10 +31,10 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Darts));
             this.mainMenu = new System.Windows.Forms.MenuStrip();
             this.spielerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.board = new System.Windows.Forms.PictureBox();
+            this.boardPictureBox = new System.Windows.Forms.PictureBox();
             this.pointsTextBox = new System.Windows.Forms.TextBox();
             this.mainMenu.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.board)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.boardPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // mainMenu
@@ -54,18 +54,18 @@
             this.spielerToolStripMenuItem.Text = "Spielerverwaltung";
             this.spielerToolStripMenuItem.Click += new System.EventHandler(this.SpielerToolStripMenuItemClick);
             // 
-            // board
+            // boardPictureBox
             // 
-            this.board.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.board.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.board.Image = global::Darts_2012.Properties.Resources.board;
-            this.board.Location = new System.Drawing.Point(0, 0);
-            this.board.Name = "board";
-            this.board.Size = new System.Drawing.Size(984, 965);
-            this.board.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.board.TabIndex = 2;
-            this.board.TabStop = false;
-            this.board.MouseClick += new System.Windows.Forms.MouseEventHandler(this.BoardMouseClick);
+            this.boardPictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.boardPictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.boardPictureBox.Image = global::Darts_2012.Properties.Resources.board;
+            this.boardPictureBox.Location = new System.Drawing.Point(0, 0);
+            this.boardPictureBox.Name = "boardPictureBox";
+            this.boardPictureBox.Size = new System.Drawing.Size(984, 965);
+            this.boardPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.boardPictureBox.TabIndex = 2;
+            this.boardPictureBox.TabStop = false;
+            this.boardPictureBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.BoardMouseClick);
             // 
             // pointsTextBox
             // 
@@ -85,15 +85,14 @@
             this.ClientSize = new System.Drawing.Size(984, 965);
             this.Controls.Add(this.pointsTextBox);
             this.Controls.Add(this.mainMenu);
-            this.Controls.Add(this.board);
+            this.Controls.Add(this.boardPictureBox);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Darts";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Darts";
-            this.SizeChanged += new System.EventHandler(this.DartsSizeChanged);
             this.mainMenu.ResumeLayout(false);
             this.mainMenu.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.board)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.boardPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -103,7 +102,7 @@
 
         private System.Windows.Forms.MenuStrip mainMenu;
         private System.Windows.Forms.ToolStripMenuItem spielerToolStripMenuItem;
-        private System.Windows.Forms.PictureBox board;
+        private System.Windows.Forms.PictureBox boardPictureBox;
         private System.Windows.Forms.TextBox pointsTextBox;
 
 
