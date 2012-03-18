@@ -49,40 +49,44 @@ namespace Darts_2012
 
         private readonly OrderedDictionary _circles = new OrderedDictionary
                                    {
-                                       {Outline.Bullseye, new Circle(15, 0)},
-                                       {Outline.Bull, new Circle(35, 0)},
-                                       {Outline.InnerSingle, new Circle(188, 0)},
-                                       {Outline.Triple, new Circle(209, -1)},
-                                       {Outline.OuterSingle, new Circle(313, -1)},
-                                       {Outline.Double, new Circle(335, -1)}
+                                       {Outline.Bullseye, new Circle(15, 0, 50)},
+                                       {Outline.Bull, new Circle(35, 0, 25)},
+                                       {Outline.InnerSingle, new Circle(188, 0, 1)},
+                                       {Outline.Triple, new Circle(209, -1, 3)},
+                                       {Outline.OuterSingle, new Circle(313, -1, 1)},
+                                       {Outline.Double, new Circle(335, -1, 2)}
                                    };
 
-        private readonly List<GraphicsPath> _graphicsPaths = new List<GraphicsPath>();
+        private readonly List<Piece> _pieces = new List<Piece>();
 
         public BoardGrid(Point center, Graphics graphics)
         {
             _center = center;
             _graphics = graphics;
             _graphics.TranslateTransform(_center.X, _center.Y);
-            InitializeGrid();
+            InitializePieces();
         }
 
-        private void InitializeGrid()
+        private void InitializePieces()
         {
-            AddCircleToGrid(Outline.Bullseye);
-            AddCircleToGrid(Outline.Bull);
+            AddPiece(Outline.Bullseye);
+            AddPiece(Outline.Bull);
 
             for (var circleIndex = 1; circleIndex < _circles.Count - 1; ++circleIndex)
             {
                 for (var sliceIndex = 0; sliceIndex < _slices.Count; ++sliceIndex)
                 {
-                    AddPolygonToGrid((Circle)_circles[circleIndex], (Circle)_circles[circleIndex + 1],
-                       _slices[sliceIndex].BeginAngle, _slices[sliceIndex + 1 == _slices.Count ? 0 : sliceIndex + 1].BeginAngle);
+                    var innerCircle = (Circle)_circles[circleIndex];
+                    var outerCircle = (Circle)_circles[circleIndex + 1];
+                    var slice = _slices[sliceIndex];
+                    AddPiece(innerCircle, outerCircle,
+                       slice.BeginAngle, _slices[sliceIndex + 1 == _slices.Count ? 0 : sliceIndex + 1].BeginAngle,
+                       outerCircle.Value * slice.Value);
                 }
             }
         }
 
-        private void AddCircleToGrid(Outline outline)
+        private void AddPiece(Outline outline)
         {
             var circle = (Circle)_circles[outline];
             var radius = circle.Radius;
@@ -91,10 +95,10 @@ namespace Darts_2012
             var y = -radius + offset;
             var graphicsPath = new GraphicsPath();
             graphicsPath.AddEllipse(x, y, radius * 2, radius * 2);
-            _graphicsPaths.Add(graphicsPath);
+            _pieces.Add(new Piece(circle.Value, graphicsPath));
         }
 
-        private void AddPolygonToGrid(Circle innerCircle, Circle outerCircle, int beginAngle, int endAngle)
+        private void AddPiece(Circle innerCircle, Circle outerCircle, int beginAngle, int endAngle, int value)
         {
             var polygonPoints = new PointF[38];
 
@@ -115,7 +119,7 @@ namespace Darts_2012
 
             var graphicsPath = new GraphicsPath();
             graphicsPath.AddPolygon(polygonPoints);
-            _graphicsPaths.Add(graphicsPath);
+            _pieces.Add(new Piece(value, graphicsPath));
         }
 
         private static float XOnCircle(int angle, int radius)
@@ -128,19 +132,21 @@ namespace Darts_2012
             return radius * (float)Math.Sin(angle * Math.PI / 180);
         }
 
-        public void HighlightPolygon(int mouseX, int mouseY)
+        public int GetPoints(int mouseX, int mouseY)
         {
             var gridX = mouseX - _center.X;
             var gridY = mouseY - _center.Y;
 
-            foreach (var graphicsPath in _graphicsPaths)
+            foreach (var piece in _pieces)
             {
-                if (graphicsPath.IsVisible(gridX, gridY))
+                if (piece.GraphicsPath.IsVisible(gridX, gridY))
                 {
-                    _graphics.FillPath(YellowBrush, graphicsPath);
-                    break;
+                    _graphics.FillPath(YellowBrush, piece.GraphicsPath);
+                    return piece.Value;
                 }
             }
+
+            return 0;
         }
     }
 }

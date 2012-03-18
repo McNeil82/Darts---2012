@@ -4,11 +4,18 @@
     {
         private readonly int _radius;
         private readonly int _offset;
+        private readonly int _value;
 
-        public Circle(int radius, int offset)
+        public Circle(int radius, int offset, int value)
         {
             _radius = radius;
             _offset = offset;
+            _value = value;
+        }
+
+        public int Value
+        {
+            get { return _value; }
         }
 
         public int Radius

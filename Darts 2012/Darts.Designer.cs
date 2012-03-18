@@ -32,6 +32,7 @@
             this.mainMenu = new System.Windows.Forms.MenuStrip();
             this.spielerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.board = new System.Windows.Forms.PictureBox();
+            this.pointsTextBox = new System.Windows.Forms.TextBox();
             this.mainMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.board)).BeginInit();
             this.SuspendLayout();
@@ -66,12 +67,23 @@
             this.board.TabStop = false;
             this.board.MouseClick += new System.Windows.Forms.MouseEventHandler(this.BoardMouseClick);
             // 
+            // pointsTextBox
+            // 
+            this.pointsTextBox.Location = new System.Drawing.Point(13, 28);
+            this.pointsTextBox.Name = "pointsTextBox";
+            this.pointsTextBox.ReadOnly = true;
+            this.pointsTextBox.Size = new System.Drawing.Size(100, 20);
+            this.pointsTextBox.TabIndex = 3;
+            this.pointsTextBox.Text = "0";
+            this.pointsTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
             // Darts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(984, 965);
+            this.Controls.Add(this.pointsTextBox);
             this.Controls.Add(this.mainMenu);
             this.Controls.Add(this.board);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -91,6 +103,7 @@
         private System.Windows.Forms.MenuStrip mainMenu;
         private System.Windows.Forms.ToolStripMenuItem spielerToolStripMenuItem;
         private System.Windows.Forms.PictureBox board;
+        private System.Windows.Forms.TextBox pointsTextBox;
 
 
 

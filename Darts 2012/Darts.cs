@@ -26,7 +26,7 @@ namespace Darts_2012
 
         private void BoardMouseClick(object sender, MouseEventArgs mouseEventArgs)
         {
-            _boardGrid.HighlightPolygon(mouseEventArgs.X, mouseEventArgs.Y);
+            pointsTextBox.Text = _boardGrid.GetPoints(mouseEventArgs.X, mouseEventArgs.Y).ToString();
         }
     }
 }
