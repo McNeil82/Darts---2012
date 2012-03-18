@@ -1,13 +1,11 @@
-﻿using System.Drawing.Drawing2D;
-
-namespace Darts_2012
+﻿namespace Darts_2012
 {
-    class DartCircle
+    class Circle
     {
         private readonly int _radius;
         private readonly int _offset;
 
-        public DartCircle(int radius, int offset)
+        public Circle(int radius, int offset)
         {
             _radius = radius;
             _offset = offset;

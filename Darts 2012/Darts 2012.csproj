@@ -73,8 +73,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BoardGrid.cs" />
-    <Compile Include="DartCircle.cs" />
-    <Compile Include="DartPie.cs" />
+    <Compile Include="Circle.cs" />
+    <Compile Include="Slice.cs" />
     <Compile Include="Darts.cs">
       <SubType>Form</SubType>
     </Compile>

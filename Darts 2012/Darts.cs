@@ -6,16 +6,17 @@ namespace Darts_2012
 {
     public partial class Darts : Form
     {
-        private BoardGrid _boardGrid;
+        private readonly BoardGrid _boardGrid;
         private readonly Point _center;
 
         public Darts()
         {
             InitializeComponent();
             _center = new Point((board.Width / 2) + 5, (board.Height / 2) - 4);
+            _boardGrid = new BoardGrid(_center, board.CreateGraphics());
         }
 
-        private void SpielerToolStripMenuItemClick(object sender, EventArgs e)
+        private void SpielerToolStripMenuItemClick(object sender, EventArgs eventArgs)
         {
             Enabled = false;
             var playerManagement = new PlayerManagement();
@@ -23,17 +24,9 @@ namespace Darts_2012
             Enabled = true;
         }
 
-        private void BoardPaint(object sender, PaintEventArgs e)
+        private void BoardMouseClick(object sender, MouseEventArgs mouseEventArgs)
         {
-            _boardGrid = new BoardGrid(e.Graphics, _center, board.Width, board.Height);
-            _boardGrid.DrawGrid();
-        }
-
-        private void BoardMouseClick(object sender, MouseEventArgs e)
-        {
-            yTextBox.Text = (e.Y - _center.Y).ToString();
-            xTextBox.Text = (e.X - _center.X).ToString();
-            _boardGrid.HighlightPolygon(e.X, e.Y);
+            _boardGrid.HighlightPolygon(mouseEventArgs.X, mouseEventArgs.Y);
         }
     }
 }

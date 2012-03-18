@@ -1,11 +1,11 @@
 ﻿namespace Darts_2012
 {
-    class DartPie
+    class Slice
     {
         private readonly int _value;
         private readonly int _beginAngle;
 
-        public DartPie(int value, int beginAngle)
+        public Slice(int value, int beginAngle)
         {
             _value = value;
             _beginAngle = beginAngle;

@@ -8,7 +8,7 @@ namespace Darts_2012
 {
     class BoardGrid
     {
-        enum Circle
+        enum Outline
         {
             Bullseye,
             Bull,
@@ -22,121 +22,99 @@ namespace Darts_2012
 
         private readonly Graphics _graphics;
         private Point _center;
-        private readonly int _width;
-        private readonly int _height;
-        private readonly List<SolidBrush> _brushes = new List<SolidBrush>(4)
-                           {
-                               new SolidBrush(Color.Red),
-                               new SolidBrush(Color.Green),
-                               new SolidBrush(Color.Black),
-                               new SolidBrush(Color.White)
-                               
-                           };
 
-        private readonly List<DartPie> _dartPies = new List<DartPie>
+        private readonly List<Slice> _slices = new List<Slice>
                             {
-                                new DartPie(20, 261),
-                                new DartPie(1, 279),
-                                new DartPie(18, 297),
-                                new DartPie(4, 315),
-                                new DartPie(13, 333),
-                                new DartPie(6, 351),
-                                new DartPie(10, 9),
-                                new DartPie(15, 27),
-                                new DartPie(2, 45),
-                                new DartPie(17, 63),
-                                new DartPie(3, 81),
-                                new DartPie(19, 99),
-                                new DartPie(7, 117),
-                                new DartPie(16, 135),
-                                new DartPie(8, 153),
-                                new DartPie(11, 171),
-                                new DartPie(14, 189),
-                                new DartPie(9, 207),
-                                new DartPie(12, 225),
-                                new DartPie(5, 243)
+                                new Slice(20, 261),
+                                new Slice(1, 279),
+                                new Slice(18, 297),
+                                new Slice(4, 315),
+                                new Slice(13, 333),
+                                new Slice(6, 351),
+                                new Slice(10, 9),
+                                new Slice(15, 27),
+                                new Slice(2, 45),
+                                new Slice(17, 63),
+                                new Slice(3, 81),
+                                new Slice(19, 99),
+                                new Slice(7, 117),
+                                new Slice(16, 135),
+                                new Slice(8, 153),
+                                new Slice(11, 171),
+                                new Slice(14, 189),
+                                new Slice(9, 207),
+                                new Slice(12, 225),
+                                new Slice(5, 243)
                             };
 
-        private readonly OrderedDictionary _dartCircles = new OrderedDictionary
+        private readonly OrderedDictionary _circles = new OrderedDictionary
                                    {
-                                       {Circle.Bullseye, new DartCircle(15, 0)},
-                                       {Circle.Bull, new DartCircle(35, 0)},
-                                       {Circle.InnerSingle, new DartCircle(188, 0)},
-                                       {Circle.Triple, new DartCircle(209, -1)},
-                                       {Circle.OuterSingle, new DartCircle(313, -1)},
-                                       {Circle.Double, new DartCircle(335, -1)}
+                                       {Outline.Bullseye, new Circle(15, 0)},
+                                       {Outline.Bull, new Circle(35, 0)},
+                                       {Outline.InnerSingle, new Circle(188, 0)},
+                                       {Outline.Triple, new Circle(209, -1)},
+                                       {Outline.OuterSingle, new Circle(313, -1)},
+                                       {Outline.Double, new Circle(335, -1)}
                                    };
 
         private readonly List<GraphicsPath> _graphicsPaths = new List<GraphicsPath>();
 
-        public BoardGrid(Graphics graphics, Point center, int width, int height)
+        public BoardGrid(Point center, Graphics graphics)
         {
-            _graphics = graphics;
             _center = center;
-            _width = width;
-            _height = height;
+            _graphics = graphics;
+            _graphics.TranslateTransform(_center.X, _center.Y);
+            InitializeGrid();
         }
 
-        public void DrawGrid()
+        private void InitializeGrid()
         {
-            DrawCircle(_brushes[1], Circle.Bull);
-            DrawCircle(_brushes[0], Circle.Bullseye);
+            AddCircleToGrid(Outline.Bullseye);
+            AddCircleToGrid(Outline.Bull);
 
-            _graphics.TranslateTransform(_center.X, _center.Y);
-
-            for (var dartCircleIndex = 1; dartCircleIndex < _dartCircles.Count - 1; ++dartCircleIndex)
+            for (var circleIndex = 1; circleIndex < _circles.Count - 1; ++circleIndex)
             {
-                for (var angleIndex = 0; angleIndex < _dartPies.Count; ++angleIndex)
+                for (var sliceIndex = 0; sliceIndex < _slices.Count; ++sliceIndex)
                 {
-                    DrawPolygon(_brushes[(dartCircleIndex % 2 * 2 + angleIndex % 2)],
-                         (DartCircle)_dartCircles[dartCircleIndex], (DartCircle)_dartCircles[dartCircleIndex + 1],
-                       _dartPies[angleIndex].BeginAngle, _dartPies[angleIndex + 1 == _dartPies.Count ? 0 : angleIndex + 1].BeginAngle);
+                    AddPolygonToGrid((Circle)_circles[circleIndex], (Circle)_circles[circleIndex + 1],
+                       _slices[sliceIndex].BeginAngle, _slices[sliceIndex + 1 == _slices.Count ? 0 : sliceIndex + 1].BeginAngle);
                 }
             }
-
-            _graphics.ResetTransform();
-            _graphics.FillRectangle(YellowBrush, _center.X, 0, 1, _height);
-            _graphics.FillRectangle(YellowBrush, 0, _center.Y, _width, 1);
         }
 
-        private void DrawCircle(Brush brush, Circle circle)
+        private void AddCircleToGrid(Outline outline)
         {
-            var dartField = (DartCircle)_dartCircles[circle];
-            var radius = dartField.Radius;
-            var offset = dartField.Offset;
-            int x = _center.X - radius + offset;
-            int y = _center.Y - radius + offset;
-            _graphics.FillEllipse(brush, x, y, radius * 2, radius * 2);
-
+            var circle = (Circle)_circles[outline];
+            var radius = circle.Radius;
+            var offset = circle.Offset;
+            var x = -radius + offset;
+            var y = -radius + offset;
             var graphicsPath = new GraphicsPath();
             graphicsPath.AddEllipse(x, y, radius * 2, radius * 2);
-            graphicsPath.CloseFigure();
             _graphicsPaths.Add(graphicsPath);
         }
 
-        private void DrawPolygon(Brush brush, DartCircle innerDartCircle, DartCircle outerDartCircle, int beginAngle, int endAngle)
+        private void AddPolygonToGrid(Circle innerCircle, Circle outerCircle, int beginAngle, int endAngle)
         {
             var polygonPoints = new PointF[38];
 
-            polygonPoints[0] = new PointF(XOnCircle(beginAngle, innerDartCircle.Radius) + innerDartCircle.Offset, YOnCircle(beginAngle, innerDartCircle.Radius) + innerDartCircle.Offset);
-            polygonPoints[1] = new PointF(XOnCircle(beginAngle, outerDartCircle.Radius) + outerDartCircle.Offset, YOnCircle(beginAngle, outerDartCircle.Radius) + outerDartCircle.Offset);
+            polygonPoints[0] = new PointF(XOnCircle(beginAngle, innerCircle.Radius) + innerCircle.Offset, YOnCircle(beginAngle, innerCircle.Radius) + innerCircle.Offset);
+            polygonPoints[1] = new PointF(XOnCircle(beginAngle, outerCircle.Radius) + outerCircle.Offset, YOnCircle(beginAngle, outerCircle.Radius) + outerCircle.Offset);
             for (var outerCircleIndex = 2; outerCircleIndex < 19; ++outerCircleIndex)
             {
-                polygonPoints[outerCircleIndex] = new PointF(XOnCircle(beginAngle + (outerCircleIndex - 1), outerDartCircle.Radius) + outerDartCircle.Offset,
-                    YOnCircle(beginAngle + (outerCircleIndex - 1), outerDartCircle.Radius) + outerDartCircle.Offset);
+                polygonPoints[outerCircleIndex] = new PointF(XOnCircle(beginAngle + (outerCircleIndex - 1), outerCircle.Radius) + outerCircle.Offset,
+                    YOnCircle(beginAngle + (outerCircleIndex - 1), outerCircle.Radius) + outerCircle.Offset);
             }
-            polygonPoints[19] = new PointF(XOnCircle(endAngle, outerDartCircle.Radius) + outerDartCircle.Offset, YOnCircle(endAngle, outerDartCircle.Radius) + outerDartCircle.Offset);
-            polygonPoints[20] = new PointF(XOnCircle(endAngle, innerDartCircle.Radius) + innerDartCircle.Offset, YOnCircle(endAngle, innerDartCircle.Radius) + innerDartCircle.Offset);
+            polygonPoints[19] = new PointF(XOnCircle(endAngle, outerCircle.Radius) + outerCircle.Offset, YOnCircle(endAngle, outerCircle.Radius) + outerCircle.Offset);
+            polygonPoints[20] = new PointF(XOnCircle(endAngle, innerCircle.Radius) + innerCircle.Offset, YOnCircle(endAngle, innerCircle.Radius) + innerCircle.Offset);
             for (var innerCircleIndex = 21; innerCircleIndex < 38; ++innerCircleIndex)
             {
-                polygonPoints[innerCircleIndex] = new PointF(XOnCircle(endAngle - (innerCircleIndex - 20), innerDartCircle.Radius) + innerDartCircle.Offset,
-                    YOnCircle(endAngle - (innerCircleIndex - 20), innerDartCircle.Radius) + innerDartCircle.Offset);
+                polygonPoints[innerCircleIndex] = new PointF(XOnCircle(endAngle - (innerCircleIndex - 20), innerCircle.Radius) + innerCircle.Offset,
+                    YOnCircle(endAngle - (innerCircleIndex - 20), innerCircle.Radius) + innerCircle.Offset);
             }
-            _graphics.FillPolygon(brush, polygonPoints);
 
             var graphicsPath = new GraphicsPath();
             graphicsPath.AddPolygon(polygonPoints);
-            graphicsPath.CloseFigure();
             _graphicsPaths.Add(graphicsPath);
         }
 
@@ -150,13 +128,17 @@ namespace Darts_2012
             return radius * (float)Math.Sin(angle * Math.PI / 180);
         }
 
-        public void HighlightPolygon(int x, int y)
+        public void HighlightPolygon(int mouseX, int mouseY)
         {
-            foreach (GraphicsPath graphicsPath in _graphicsPaths)
+            var gridX = mouseX - _center.X;
+            var gridY = mouseY - _center.Y;
+
+            foreach (var graphicsPath in _graphicsPaths)
             {
-                if (graphicsPath.IsVisible(x, y))
+                if (graphicsPath.IsVisible(gridX, gridY))
                 {
-                    //_graphics.FillPath(YellowBrush, graphicsPath);
+                    _graphics.FillPath(YellowBrush, graphicsPath);
+                    break;
                 }
             }
         }
