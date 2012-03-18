@@ -102,19 +102,15 @@ namespace Darts_2012
         {
             var polygonPoints = new PointF[38];
 
-            polygonPoints[0] = new PointF(XOnCircle(beginAngle, innerCircle.Radius) + innerCircle.Offset, YOnCircle(beginAngle, innerCircle.Radius) + innerCircle.Offset);
-            polygonPoints[1] = new PointF(XOnCircle(beginAngle, outerCircle.Radius) + outerCircle.Offset, YOnCircle(beginAngle, outerCircle.Radius) + outerCircle.Offset);
-            for (var outerCircleIndex = 2; outerCircleIndex < 19; ++outerCircleIndex)
+            for (var outerCircleIndex = 0; outerCircleIndex < 19; ++outerCircleIndex)
             {
-                polygonPoints[outerCircleIndex] = new PointF(XOnCircle(beginAngle + (outerCircleIndex - 1), outerCircle.Radius) + outerCircle.Offset,
-                    YOnCircle(beginAngle + (outerCircleIndex - 1), outerCircle.Radius) + outerCircle.Offset);
+                polygonPoints[outerCircleIndex] = new PointF(XOnCircle(beginAngle + outerCircleIndex, outerCircle.Radius) + outerCircle.Offset,
+                    YOnCircle(beginAngle + outerCircleIndex, outerCircle.Radius) + outerCircle.Offset);
             }
-            polygonPoints[19] = new PointF(XOnCircle(endAngle, outerCircle.Radius) + outerCircle.Offset, YOnCircle(endAngle, outerCircle.Radius) + outerCircle.Offset);
-            polygonPoints[20] = new PointF(XOnCircle(endAngle, innerCircle.Radius) + innerCircle.Offset, YOnCircle(endAngle, innerCircle.Radius) + innerCircle.Offset);
-            for (var innerCircleIndex = 21; innerCircleIndex < 38; ++innerCircleIndex)
+            for (var innerCircleIndex = 19; innerCircleIndex < 38; ++innerCircleIndex)
             {
-                polygonPoints[innerCircleIndex] = new PointF(XOnCircle(endAngle - (innerCircleIndex - 20), innerCircle.Radius) + innerCircle.Offset,
-                    YOnCircle(endAngle - (innerCircleIndex - 20), innerCircle.Radius) + innerCircle.Offset);
+                polygonPoints[innerCircleIndex] = new PointF(XOnCircle(endAngle - (innerCircleIndex - 19), innerCircle.Radius) + innerCircle.Offset,
+                    YOnCircle(endAngle - (innerCircleIndex - 19), innerCircle.Radius) + innerCircle.Offset);
             }
 
             var graphicsPath = new GraphicsPath();
