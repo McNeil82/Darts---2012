@@ -90,6 +90,7 @@
             this.Name = "Darts";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Darts";
+            this.SizeChanged += new System.EventHandler(this.DartsSizeChanged);
             this.mainMenu.ResumeLayout(false);
             this.mainMenu.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.board)).EndInit();
