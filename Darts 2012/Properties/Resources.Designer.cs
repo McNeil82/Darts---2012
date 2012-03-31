@@ -73,5 +73,33 @@ namespace Darts_2012.Properties {
                 return ((System.Drawing.Icon)(obj));
             }
         }
+        
+        internal static System.Drawing.Bitmap noThrowLeft {
+            get {
+                object obj = ResourceManager.GetObject("noThrowLeft", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap oneThrowLeft {
+            get {
+                object obj = ResourceManager.GetObject("oneThrowLeft", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap threeThrowsLeft {
+            get {
+                object obj = ResourceManager.GetObject("threeThrowsLeft", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap twoThrowsLeft {
+            get {
+                object obj = ResourceManager.GetObject("twoThrowsLeft", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

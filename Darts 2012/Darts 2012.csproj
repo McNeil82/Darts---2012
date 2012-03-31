@@ -81,6 +81,7 @@
     <Compile Include="Board.cs" />
     <Compile Include="Game\AroundTheClock.cs" />
     <Compile Include="Game\DartsGame.cs" />
+    <Compile Include="Game\GameManagement.cs" />
     <Compile Include="Poco\Circle.cs" />
     <Compile Include="Poco\Piece.cs" />
     <Compile Include="Poco\Slice.cs" />
@@ -155,7 +156,18 @@
   <ItemGroup>
     <None Include="Resources\board.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\all.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\none.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\2left.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

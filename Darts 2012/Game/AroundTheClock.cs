@@ -6,15 +6,13 @@
         private readonly int _to;
         private readonly bool _skip;
         private readonly bool _joker;
-        private readonly int _playerCount;
 
-        public AroundTheClock(int from, int to, bool skip, bool joker, int playerCount)
+        public AroundTheClock(int from, int to, bool skip, bool joker)
         {
             _from = from;
             _to = to;
             _skip = skip;
             _joker = joker;
-            _playerCount = playerCount;
         }
 
         public override string ToString()
@@ -23,8 +21,7 @@
                 + "From: " + _from + "\n"
                 + "To: " + _to + "\n"
                 + "Skip: " + _skip + "\n"
-                + "Joker: " + _joker + "\n"
-                + "Player count: " + _playerCount;
+                + "Joker: " + _joker;
         }
     }
 }

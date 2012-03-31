@@ -7,7 +7,7 @@ namespace Darts_2012
     public partial class Darts : Form
     {
         private static readonly Board Board = new Board();
-        private IDartsGame _actualGame;
+        private readonly GameManagement _gameManagement = new GameManagement();
 
         public Darts()
         {
@@ -35,10 +35,26 @@ namespace Darts_2012
             var aroundTheClockDialog = new AroundTheClockDialog();
             if (aroundTheClockDialog.ShowDialog() == DialogResult.OK)
             {
-                _actualGame = aroundTheClockDialog.ActualGame;
-                MessageBox.Show(_actualGame.ToString());
+                _gameManagement.Game = aroundTheClockDialog.CurrentGame;
+                _gameManagement.PlayerCount = aroundTheClockDialog.PlayerCount;
+                PrepareNewGame();
             }
             Enabled = true;
+        }
+
+        private void PrepareNewGame()
+        {
+            panelPlayer1.Visible = false;
+            panelPlayer2.Visible = false;
+            if (_gameManagement.PlayerCount >= 1)
+            {
+                panelPlayer1.Visible = true;
+            }
+            if (_gameManagement.PlayerCount >= 2)
+            {
+                panelPlayer2.Visible = true;
+            }
+            _gameManagement.CurrentPlayer = 1;
         }
     }
 }
