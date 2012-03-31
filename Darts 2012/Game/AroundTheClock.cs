@@ -2,26 +2,29 @@
 {
     class AroundTheClock : IDartsGame
     {
-        private readonly int _from;
-        private readonly int _to;
-        private readonly bool _skip;
-        private readonly bool _joker;
+        public int From { get; private set; }
+
+        public int To { get; private set; }
+
+        public bool Skip { get; private set; }
+
+        public bool Joker { get; private set; }
 
         public AroundTheClock(int from, int to, bool skip, bool joker)
         {
-            _from = from;
-            _to = to;
-            _skip = skip;
-            _joker = joker;
+            From = from;
+            To = to;
+            Skip = skip;
+            Joker = joker;
         }
 
         public override string ToString()
         {
             return base.ToString() + "\n"
-                + "From: " + _from + "\n"
-                + "To: " + _to + "\n"
-                + "Skip: " + _skip + "\n"
-                + "Joker: " + _joker;
+                + "From: " + From + "\n"
+                + "To: " + To + "\n"
+                + "Skip: " + Skip + "\n"
+                + "Joker: " + Joker;
         }
     }
 }

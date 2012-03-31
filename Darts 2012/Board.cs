@@ -104,9 +104,9 @@ namespace Darts_2012
             return radius * (float)Math.Sin(angle * Math.PI / 180);
         }
 
-        public int GetPoints(int mouseX, int mouseY, int centerX, int centerY)
+        public Throw DetectThrow(int mouseX, int mouseY, int centerX, int centerY)
         {
-            var points = 0;
+            var @throw = new Throw();
             var gridX = mouseX - centerX;
             var gridY = mouseY - centerY;
 
@@ -117,10 +117,12 @@ namespace Darts_2012
                 {
                     if (circleIndex < 2)
                     {
-                        return circle.Value;
+                        @throw.Value = circle.Value;
+                        @throw.Multiplier = 1;
+                        return @throw;
                     }
 
-                    points = circle.Value;
+                    @throw.Multiplier = circle.Value;
                     break;
                 }
             }
@@ -129,11 +131,12 @@ namespace Darts_2012
             {
                 if (slice.GraphicsPath.IsVisible(gridX, gridY))
                 {
-                    return points * slice.Value;
+                    @throw.Value = slice.Value;
+                    return @throw;
                 }
             }
 
-            return points;
+            return @throw;
         }
     }
 }

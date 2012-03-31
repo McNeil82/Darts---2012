@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
 using Darts_2012.Game;
+using Darts_2012.Poco;
+using Darts_2012.Properties;
 
 namespace Darts_2012
 {
@@ -26,7 +28,56 @@ namespace Darts_2012
         {
             var centerX = (boardPictureBox.Width / 2) + 5;
             var centerY = (boardPictureBox.Height / 2) - 4;
-            pointsTextBox.Text = Board.GetPoints(mouseEventArgs.X, mouseEventArgs.Y, centerX, centerY).ToString();
+            var @throw = Board.DetectThrow(mouseEventArgs.X, mouseEventArgs.Y, centerX, centerY);
+            ProcessThrow(@throw);
+        }
+
+        private void ProcessThrow(Throw @throw)
+        {
+            _gameManagement.ProcessThrow(@throw);
+            if (_gameManagement.CurrentPlayer == 1)
+            {
+                if (_gameManagement.CurrentThrow == 1)
+                {
+                    player1ThrowLights.Image = Resources.threeThrowsLeft;
+                }
+                else if (_gameManagement.CurrentThrow == 2)
+                {
+                    player1ThrowLights.Image = Resources.twoThrowsLeft;
+                }
+                else if (_gameManagement.CurrentThrow == 3)
+                {
+                    player1ThrowLights.Image = Resources.oneThrowLeft;
+                }
+
+            }
+            else
+            {
+                player1ThrowLights.Image = Resources.noThrowLeft;
+            }
+            if (_gameManagement.CurrentPlayer == 2)
+            {
+                if (_gameManagement.CurrentThrow == 1)
+                {
+                    player2ThrowLights.Image = Resources.threeThrowsLeft;
+                }
+                else if (_gameManagement.CurrentThrow == 2)
+                {
+                    player2ThrowLights.Image = Resources.twoThrowsLeft;
+                }
+                else if (_gameManagement.CurrentThrow == 3)
+                {
+                    player2ThrowLights.Image = Resources.oneThrowLeft;
+                }
+                else if (_gameManagement.CurrentThrow == 0)
+                {
+                    player2ThrowLights.Image = Resources.noThrowLeft;
+                }
+            }
+            else
+            {
+                player2ThrowLights.Image = Resources.noThrowLeft;
+            }
         }
 
         private void AroundTheClockToolStripMenuItemClick(object sender, EventArgs e)
@@ -44,17 +95,19 @@ namespace Darts_2012
 
         private void PrepareNewGame()
         {
-            panelPlayer1.Visible = false;
-            panelPlayer2.Visible = false;
+            player1Panel.Visible = false;
+            player2Panel.Visible = false;
             if (_gameManagement.PlayerCount >= 1)
             {
-                panelPlayer1.Visible = true;
+                player1CurrentTarget.Text = ((AroundTheClock)_gameManagement.Game).From.ToString();
+                player1Panel.Visible = true;
             }
             if (_gameManagement.PlayerCount >= 2)
             {
-                panelPlayer2.Visible = true;
+                player2Panel.Visible = true;
             }
             _gameManagement.CurrentPlayer = 1;
+            _gameManagement.CurrentThrow = 1;
         }
     }
 }
