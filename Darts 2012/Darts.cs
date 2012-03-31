@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 using Darts_2012.Game;
 using Darts_2012.Poco;
@@ -26,58 +27,42 @@ namespace Darts_2012
 
         private void BoardMouseClick(object sender, MouseEventArgs mouseEventArgs)
         {
-            var centerX = (boardPictureBox.Width / 2) + 5;
-            var centerY = (boardPictureBox.Height / 2) - 4;
-            var @throw = Board.DetectThrow(mouseEventArgs.X, mouseEventArgs.Y, centerX, centerY);
-            ProcessThrow(@throw);
+            if (_gameManagement.GameInProgress)
+            {
+                var centerX = (boardPictureBox.Width / 2) + 5;
+                var centerY = (boardPictureBox.Height / 2) - 4;
+                var @throw = Board.DetectThrow(mouseEventArgs.X, mouseEventArgs.Y, centerX, centerY);
+                ProcessThrow(@throw);
+            }
         }
 
         private void ProcessThrow(Throw @throw)
         {
             _gameManagement.ProcessThrow(@throw);
-            if (_gameManagement.CurrentPlayer == 1)
+            player1ThrowLights.Image = GetThrowImage(1);
+            player2ThrowLights.Image = GetThrowImage(2);
+        }
+
+        private Bitmap GetThrowImage(int playerNumber)
+        {
+            if (_gameManagement.CurrentPlayer.Number == playerNumber)
             {
                 if (_gameManagement.CurrentThrow == 1)
                 {
-                    player1ThrowLights.Image = Resources.threeThrowsLeft;
+                    return Resources.threeThrowsLeft;
                 }
-                else if (_gameManagement.CurrentThrow == 2)
+                if (_gameManagement.CurrentThrow == 2)
                 {
-                    player1ThrowLights.Image = Resources.twoThrowsLeft;
+                    return Resources.twoThrowsLeft;
                 }
-                else if (_gameManagement.CurrentThrow == 3)
+                if (_gameManagement.CurrentThrow == 3)
                 {
-                    player1ThrowLights.Image = Resources.oneThrowLeft;
+                    return Resources.oneThrowLeft;
                 }
 
             }
-            else
-            {
-                player1ThrowLights.Image = Resources.noThrowLeft;
-            }
-            if (_gameManagement.CurrentPlayer == 2)
-            {
-                if (_gameManagement.CurrentThrow == 1)
-                {
-                    player2ThrowLights.Image = Resources.threeThrowsLeft;
-                }
-                else if (_gameManagement.CurrentThrow == 2)
-                {
-                    player2ThrowLights.Image = Resources.twoThrowsLeft;
-                }
-                else if (_gameManagement.CurrentThrow == 3)
-                {
-                    player2ThrowLights.Image = Resources.oneThrowLeft;
-                }
-                else if (_gameManagement.CurrentThrow == 0)
-                {
-                    player2ThrowLights.Image = Resources.noThrowLeft;
-                }
-            }
-            else
-            {
-                player2ThrowLights.Image = Resources.noThrowLeft;
-            }
+
+            return Resources.noThrowLeft;
         }
 
         private void AroundTheClockToolStripMenuItemClick(object sender, EventArgs e)
@@ -86,28 +71,26 @@ namespace Darts_2012
             var aroundTheClockDialog = new AroundTheClockDialog();
             if (aroundTheClockDialog.ShowDialog() == DialogResult.OK)
             {
-                _gameManagement.Game = aroundTheClockDialog.CurrentGame;
-                _gameManagement.PlayerCount = aroundTheClockDialog.PlayerCount;
-                PrepareNewGame();
+                _gameManagement.PrepareGame(aroundTheClockDialog.CurrentGame);
+                ShowPlayerPanels();
             }
             Enabled = true;
         }
 
-        private void PrepareNewGame()
+        private void ShowPlayerPanels()
         {
             player1Panel.Visible = false;
             player2Panel.Visible = false;
-            if (_gameManagement.PlayerCount >= 1)
+            if (_gameManagement.GetPlayerCount() >= 1)
             {
-                player1CurrentTarget.Text = ((AroundTheClock)_gameManagement.Game).From.ToString();
+                player1CurrentTarget.Text = _gameManagement.GetPlayerScore(1);
                 player1Panel.Visible = true;
             }
-            if (_gameManagement.PlayerCount >= 2)
+            if (_gameManagement.GetPlayerCount() >= 2)
             {
+                player2CurrentTarget.Text = _gameManagement.GetPlayerScore(2);
                 player2Panel.Visible = true;
             }
-            _gameManagement.CurrentPlayer = 1;
-            _gameManagement.CurrentThrow = 1;
         }
     }
 }

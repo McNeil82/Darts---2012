@@ -16,8 +16,6 @@ namespace Darts_2012
 
         public IDartsGame CurrentGame { get; private set; }
 
-        public int PlayerCount { get; private set; }
-
         private void ComboBoxFromSelectedIndexChanged(object sender, EventArgs e)
         {
             comboBoxTo.Items.Clear();
@@ -33,13 +31,14 @@ namespace Darts_2012
 
         private void ButtonOkClick(object sender, EventArgs e)
         {
-            var from = Int16.Parse(comboBoxFrom.SelectedItem.ToString());
             var to = Int16.Parse(comboBoxTo.SelectedItem.ToString());
             var skip = checkBoxSkip.Checked;
             var joker = checkBoxJoker.Checked;
-            CurrentGame = new AroundTheClock(from, to, skip, joker);
-            PlayerCount = Int16.Parse(comboBoxPlayerCount.SelectedItem.ToString());
-
+            CurrentGame = new AroundTheClock(to, skip, joker)
+                              {
+                                  PlayerCount = Int16.Parse(comboBoxPlayerCount.SelectedItem.ToString()),
+                                  InitialScore = Int16.Parse(comboBoxFrom.SelectedItem.ToString())
+                              };
         }
     }
 }

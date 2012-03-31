@@ -79,11 +79,13 @@
       <DependentUpon>AroundTheClockDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Board.cs" />
+    <Compile Include="Game\AbstractDartsGame.cs" />
     <Compile Include="Game\AroundTheClock.cs" />
     <Compile Include="Game\DartsGame.cs" />
     <Compile Include="Game\GameManagement.cs" />
     <Compile Include="Poco\Circle.cs" />
     <Compile Include="Poco\Piece.cs" />
+    <Compile Include="Poco\Player.cs" />
     <Compile Include="Poco\Slice.cs" />
     <Compile Include="Darts.cs">
       <SubType>Form</SubType>

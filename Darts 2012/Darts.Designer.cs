@@ -40,8 +40,10 @@
             this.player2Panel = new System.Windows.Forms.Panel();
             this.player2ThrowLights = new System.Windows.Forms.PictureBox();
             this.labelPlayer2Name = new System.Windows.Forms.Label();
-            this.labelCurrentTarget = new System.Windows.Forms.Label();
+            this.player1CurrentTargetLabel = new System.Windows.Forms.Label();
             this.player1CurrentTarget = new System.Windows.Forms.Label();
+            this.player2CurrentTargetLabel = new System.Windows.Forms.Label();
+            this.player2CurrentTarget = new System.Windows.Forms.Label();
             this.mainMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.boardPictureBox)).BeginInit();
             this.player1Panel.SuspendLayout();
@@ -99,7 +101,7 @@
             // player1Panel
             // 
             this.player1Panel.Controls.Add(this.player1CurrentTarget);
-            this.player1Panel.Controls.Add(this.labelCurrentTarget);
+            this.player1Panel.Controls.Add(this.player1CurrentTargetLabel);
             this.player1Panel.Controls.Add(this.player1ThrowLights);
             this.player1Panel.Controls.Add(this.labelPlayer1Name);
             this.player1Panel.Location = new System.Drawing.Point(12, 27);
@@ -129,6 +131,8 @@
             // 
             // player2Panel
             // 
+            this.player2Panel.Controls.Add(this.player2CurrentTarget);
+            this.player2Panel.Controls.Add(this.player2CurrentTargetLabel);
             this.player2Panel.Controls.Add(this.player2ThrowLights);
             this.player2Panel.Controls.Add(this.labelPlayer2Name);
             this.player2Panel.Location = new System.Drawing.Point(12, 533);
@@ -156,14 +160,14 @@
             this.labelPlayer2Name.TabIndex = 0;
             this.labelPlayer2Name.Text = "Spieler 2";
             // 
-            // labelCurrentTarget
+            // player1CurrentTargetLabel
             // 
-            this.labelCurrentTarget.AutoSize = true;
-            this.labelCurrentTarget.Location = new System.Drawing.Point(4, 68);
-            this.labelCurrentTarget.Name = "labelCurrentTarget";
-            this.labelCurrentTarget.Size = new System.Drawing.Size(87, 13);
-            this.labelCurrentTarget.TabIndex = 2;
-            this.labelCurrentTarget.Text = "zu treffende Zahl";
+            this.player1CurrentTargetLabel.AutoSize = true;
+            this.player1CurrentTargetLabel.Location = new System.Drawing.Point(4, 68);
+            this.player1CurrentTargetLabel.Name = "player1CurrentTargetLabel";
+            this.player1CurrentTargetLabel.Size = new System.Drawing.Size(87, 13);
+            this.player1CurrentTargetLabel.TabIndex = 2;
+            this.player1CurrentTargetLabel.Text = "zu treffende Zahl";
             // 
             // player1CurrentTarget
             // 
@@ -172,6 +176,23 @@
             this.player1CurrentTarget.Name = "player1CurrentTarget";
             this.player1CurrentTarget.Size = new System.Drawing.Size(0, 13);
             this.player1CurrentTarget.TabIndex = 3;
+            // 
+            // player2CurrentTargetLabel
+            // 
+            this.player2CurrentTargetLabel.AutoSize = true;
+            this.player2CurrentTargetLabel.Location = new System.Drawing.Point(4, 68);
+            this.player2CurrentTargetLabel.Name = "player2CurrentTargetLabel";
+            this.player2CurrentTargetLabel.Size = new System.Drawing.Size(87, 13);
+            this.player2CurrentTargetLabel.TabIndex = 3;
+            this.player2CurrentTargetLabel.Text = "zu treffende Zahl";
+            // 
+            // player2CurrentTarget
+            // 
+            this.player2CurrentTarget.AutoSize = true;
+            this.player2CurrentTarget.Location = new System.Drawing.Point(91, 68);
+            this.player2CurrentTarget.Name = "player2CurrentTarget";
+            this.player2CurrentTarget.Size = new System.Drawing.Size(0, 13);
+            this.player2CurrentTarget.TabIndex = 4;
             // 
             // Darts
             // 
@@ -216,7 +237,9 @@
         private System.Windows.Forms.PictureBox player1ThrowLights;
         private System.Windows.Forms.PictureBox player2ThrowLights;
         private System.Windows.Forms.Label player1CurrentTarget;
-        private System.Windows.Forms.Label labelCurrentTarget;
+        private System.Windows.Forms.Label player1CurrentTargetLabel;
+        private System.Windows.Forms.Label player2CurrentTarget;
+        private System.Windows.Forms.Label player2CurrentTargetLabel;
 
 
 
