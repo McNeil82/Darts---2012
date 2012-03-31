@@ -72,10 +72,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Circle.cs" />
     <Compile Include="Board.cs" />
-    <Compile Include="Piece.cs" />
-    <Compile Include="Slice.cs" />
+    <Compile Include="Poco\Circle.cs" />
+    <Compile Include="Poco\Piece.cs" />
+    <Compile Include="Poco\Slice.cs" />
     <Compile Include="Darts.cs">
       <SubType>Form</SubType>
     </Compile>

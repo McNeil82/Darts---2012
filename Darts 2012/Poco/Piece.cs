@@ -1,6 +1,6 @@
-﻿using System.Drawing.Drawing2D;
+using System.Drawing.Drawing2D;
 
-namespace Darts_2012
+namespace Darts_2012.Poco
 {
     class Piece
     {
