@@ -72,7 +72,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AroundTheClockDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AroundTheClockDialog.Designer.cs">
+      <DependentUpon>AroundTheClockDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Board.cs" />
+    <Compile Include="Game\AroundTheClock.cs" />
+    <Compile Include="Game\DartsGame.cs" />
     <Compile Include="Poco\Circle.cs" />
     <Compile Include="Poco\Piece.cs" />
     <Compile Include="Poco\Slice.cs" />
@@ -90,6 +98,9 @@
     <Compile Include="PlayerManagement.Designer.cs">
       <DependentUpon>PlayerManagement.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AroundTheClockDialog.resx">
+      <DependentUpon>AroundTheClockDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Darts.resx">
       <DependentUpon>Darts.cs</DependentUpon>
     </EmbeddedResource>
@@ -144,6 +155,7 @@
   <ItemGroup>
     <None Include="Resources\board.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
