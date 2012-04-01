@@ -4,6 +4,8 @@ namespace Darts_2012.Game
 {
     class AroundTheClock : AbstractDartsGame
     {
+        private bool PlayerHasFinished { get; set; }
+
         public int To { get; private set; }
 
         public bool Skip { get; private set; }
@@ -17,25 +19,51 @@ namespace Darts_2012.Game
             Joker = joker;
         }
 
-        public override int CalculateScore(Throw @throw, Player player)
+        public override Player ProcessThrow(Throw @throw, Player player)
         {
-            var newScore = player.CurrentScore;
-            var lastThrow = player.LastThrow;
+            player.CurrentThrow++;
+            player.CurrentScore = CalculateScore(@throw, player.CurrentScore);
+            player.HasFinished = PlayerHasFinished;
 
-            if (lastThrow == null && @throw.Value == InitialScore)
+            return player;
+        }
+
+        public int CalculateScore(Throw @throw, int currentScore)
+        {
+            PlayerHasFinished = false;
+            var newScore = currentScore;
+
+            if (@throw.Value == currentScore || (Joker && ThrowWasJoker(@throw.Value)))
             {
-                newScore++;
+                if (Skip)
+                {
+                    newScore += @throw.Multiplier * 1;
+                }
+                else
+                {
+                    newScore++;
+                }
+
+                if (newScore > To)
+                {
+                    newScore = To;
+                    PlayerHasFinished = true;
+                }
             }
 
             return newScore;
         }
 
-        public override string ToString()
+        private static bool ThrowWasJoker(int throwValue)
         {
-            return base.ToString() + "\n"
-                + "To: " + To + "\n"
-                + "Skip: " + Skip + "\n"
-                + "Joker: " + Joker;
+            return throwValue == 50 || throwValue == 25;
+        }
+
+        public override string GameMode()
+        {
+            return "Around The Clock (" + InitialScore + " - " + To + ")"
+                + (Skip ? " mit Sprüngen" : " ohne Sprünge")
+                + (Joker ? " mit Jokern" : " ohne Joker");
         }
     }
 }

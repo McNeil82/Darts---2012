@@ -8,19 +8,19 @@ namespace Darts_2012.Game
 
         private IDartsGame Game { get; set; }
 
-        public Player CurrentPlayer { get; set; }
-
-        public int CurrentThrow { get; set; }
+        private Player CurrentPlayer { get; set; }
 
         private Player[] Players { get; set; }
+
+        private bool LastRound { get; set; }
 
         public void PrepareGame(IDartsGame game)
         {
             Game = game;
             CreatePlayers();
             CurrentPlayer = Players[0];
-            CurrentThrow = 1;
             GameInProgress = true;
+            LastRound = false;
         }
 
         private void CreatePlayers()
@@ -30,9 +30,41 @@ namespace Darts_2012.Game
             {
                 Players[playerIndex] = new Player
                                            {
+                                               CurrentThrow = playerIndex == 0 ? 1 : 0,
                                                CurrentScore = Game.InitialScore,
                                                Number = playerIndex + 1
                                            };
+            }
+        }
+
+        public void ProcessThrow(Throw @throw)
+        {
+
+            if (!CurrentPlayer.HasFinished)
+            {
+                CurrentPlayer = Game.ProcessThrow(@throw, CurrentPlayer);
+                if (CurrentPlayer.HasFinished)
+                {
+                    LastRound = true;
+                }
+            }
+
+            if (CurrentPlayer.CurrentThrow > 3 || CurrentPlayer.HasFinished)
+            {
+                var nextPlayerIndex = CurrentPlayer.Number;
+                if (nextPlayerIndex >= Players.Length)
+                {
+                    if (LastRound)
+                    {
+                        GameInProgress = false;
+                        return;
+                    }
+
+                    nextPlayerIndex = 0;
+                }
+
+                CurrentPlayer = Players[nextPlayerIndex];
+                CurrentPlayer.CurrentThrow = 1;
             }
         }
 
@@ -41,29 +73,47 @@ namespace Darts_2012.Game
             return Game.PlayerCount;
         }
 
-        public string GetCurrentScoreFromPlayer(int playerNumber)
+        public int GetCurrentPlayerNumber()
         {
-            return Players[playerNumber - 1].CurrentScore.ToString();
+            return CurrentPlayer.Number;
         }
 
-        public void ProcessThrow(Throw @throw)
+        public string GetCurrentScoreFromPlayer(int playerNumber)
         {
-            Game.CalculateScore(@throw, CurrentPlayer);
-            CurrentPlayer.LastThrow = @throw;
-
-
-            CurrentThrow += 1;
-            if (CurrentThrow > 3)
+            if (playerNumber - 1 < Players.Length)
             {
-                var nextPlayerIndex = CurrentPlayer.Number;
-                if (nextPlayerIndex >= Players.Length)
-                {
-                    nextPlayerIndex = 0;
-                }
+                return Players[playerNumber - 1].CurrentScore.ToString();
 
-                CurrentPlayer = Players[nextPlayerIndex];
-                CurrentThrow = 1;
             }
+
+            return "-";
+        }
+
+        public int GetCurrentThrowFromPlayer(int playerNumber)
+        {
+            if (playerNumber - 1 < Players.Length)
+            {
+                return Players[playerNumber - 1].CurrentThrow;
+
+            }
+
+            return 0;
+        }
+
+        public bool PlayerHasfinished(int playerNumber)
+        {
+            if (playerNumber - 1 < Players.Length)
+            {
+                return Players[playerNumber - 1].HasFinished;
+
+            }
+
+            return false;
+        }
+
+        public string GetGameMode()
+        {
+            return Game.GameMode();
         }
     }
 }

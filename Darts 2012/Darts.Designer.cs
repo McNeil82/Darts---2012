@@ -35,15 +35,15 @@
             this.playerManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.boardPictureBox = new System.Windows.Forms.PictureBox();
             this.player1Panel = new System.Windows.Forms.Panel();
+            this.player1CurrentTarget = new System.Windows.Forms.Label();
+            this.player1CurrentTargetLabel = new System.Windows.Forms.Label();
             this.player1ThrowLights = new System.Windows.Forms.PictureBox();
             this.labelPlayer1Name = new System.Windows.Forms.Label();
             this.player2Panel = new System.Windows.Forms.Panel();
+            this.player2CurrentTarget = new System.Windows.Forms.Label();
+            this.player2CurrentTargetLabel = new System.Windows.Forms.Label();
             this.player2ThrowLights = new System.Windows.Forms.PictureBox();
             this.labelPlayer2Name = new System.Windows.Forms.Label();
-            this.player1CurrentTargetLabel = new System.Windows.Forms.Label();
-            this.player1CurrentTarget = new System.Windows.Forms.Label();
-            this.player2CurrentTargetLabel = new System.Windows.Forms.Label();
-            this.player2CurrentTarget = new System.Windows.Forms.Label();
             this.mainMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.boardPictureBox)).BeginInit();
             this.player1Panel.SuspendLayout();
@@ -110,6 +110,23 @@
             this.player1Panel.TabIndex = 4;
             this.player1Panel.Visible = false;
             // 
+            // player1CurrentTarget
+            // 
+            this.player1CurrentTarget.AutoSize = true;
+            this.player1CurrentTarget.Location = new System.Drawing.Point(91, 68);
+            this.player1CurrentTarget.Name = "player1CurrentTarget";
+            this.player1CurrentTarget.Size = new System.Drawing.Size(0, 13);
+            this.player1CurrentTarget.TabIndex = 3;
+            // 
+            // player1CurrentTargetLabel
+            // 
+            this.player1CurrentTargetLabel.AutoSize = true;
+            this.player1CurrentTargetLabel.Location = new System.Drawing.Point(4, 68);
+            this.player1CurrentTargetLabel.Name = "player1CurrentTargetLabel";
+            this.player1CurrentTargetLabel.Size = new System.Drawing.Size(87, 13);
+            this.player1CurrentTargetLabel.TabIndex = 2;
+            this.player1CurrentTargetLabel.Text = "zu treffende Zahl";
+            // 
             // player1ThrowLights
             // 
             this.player1ThrowLights.Image = global::Darts_2012.Properties.Resources.threeThrowsLeft;
@@ -141,6 +158,23 @@
             this.player2Panel.TabIndex = 5;
             this.player2Panel.Visible = false;
             // 
+            // player2CurrentTarget
+            // 
+            this.player2CurrentTarget.AutoSize = true;
+            this.player2CurrentTarget.Location = new System.Drawing.Point(91, 68);
+            this.player2CurrentTarget.Name = "player2CurrentTarget";
+            this.player2CurrentTarget.Size = new System.Drawing.Size(0, 13);
+            this.player2CurrentTarget.TabIndex = 4;
+            // 
+            // player2CurrentTargetLabel
+            // 
+            this.player2CurrentTargetLabel.AutoSize = true;
+            this.player2CurrentTargetLabel.Location = new System.Drawing.Point(4, 68);
+            this.player2CurrentTargetLabel.Name = "player2CurrentTargetLabel";
+            this.player2CurrentTargetLabel.Size = new System.Drawing.Size(87, 13);
+            this.player2CurrentTargetLabel.TabIndex = 3;
+            this.player2CurrentTargetLabel.Text = "zu treffende Zahl";
+            // 
             // player2ThrowLights
             // 
             this.player2ThrowLights.Image = global::Darts_2012.Properties.Resources.noThrowLeft;
@@ -159,40 +193,6 @@
             this.labelPlayer2Name.Size = new System.Drawing.Size(48, 13);
             this.labelPlayer2Name.TabIndex = 0;
             this.labelPlayer2Name.Text = "Spieler 2";
-            // 
-            // player1CurrentTargetLabel
-            // 
-            this.player1CurrentTargetLabel.AutoSize = true;
-            this.player1CurrentTargetLabel.Location = new System.Drawing.Point(4, 68);
-            this.player1CurrentTargetLabel.Name = "player1CurrentTargetLabel";
-            this.player1CurrentTargetLabel.Size = new System.Drawing.Size(87, 13);
-            this.player1CurrentTargetLabel.TabIndex = 2;
-            this.player1CurrentTargetLabel.Text = "zu treffende Zahl";
-            // 
-            // player1CurrentTarget
-            // 
-            this.player1CurrentTarget.AutoSize = true;
-            this.player1CurrentTarget.Location = new System.Drawing.Point(91, 68);
-            this.player1CurrentTarget.Name = "player1CurrentTarget";
-            this.player1CurrentTarget.Size = new System.Drawing.Size(0, 13);
-            this.player1CurrentTarget.TabIndex = 3;
-            // 
-            // player2CurrentTargetLabel
-            // 
-            this.player2CurrentTargetLabel.AutoSize = true;
-            this.player2CurrentTargetLabel.Location = new System.Drawing.Point(4, 68);
-            this.player2CurrentTargetLabel.Name = "player2CurrentTargetLabel";
-            this.player2CurrentTargetLabel.Size = new System.Drawing.Size(87, 13);
-            this.player2CurrentTargetLabel.TabIndex = 3;
-            this.player2CurrentTargetLabel.Text = "zu treffende Zahl";
-            // 
-            // player2CurrentTarget
-            // 
-            this.player2CurrentTarget.AutoSize = true;
-            this.player2CurrentTarget.Location = new System.Drawing.Point(91, 68);
-            this.player2CurrentTarget.Name = "player2CurrentTarget";
-            this.player2CurrentTarget.Size = new System.Drawing.Size(0, 13);
-            this.player2CurrentTarget.TabIndex = 4;
             // 
             // Darts
             // 

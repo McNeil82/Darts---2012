@@ -8,6 +8,8 @@ namespace Darts_2012.Game
 
         int InitialScore { get; set; }
 
-        int CalculateScore(Throw @throw, Player player);
+        Player ProcessThrow(Throw @throw, Player player);
+
+        string GameMode();
     }
 }

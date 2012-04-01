@@ -39,27 +39,46 @@ namespace Darts_2012
         private void ProcessThrow(Throw @throw)
         {
             _gameManagement.ProcessThrow(@throw);
+            RefreshPanels();
+        }
+
+        private void RefreshPanels()
+        {
             player1ThrowLights.Image = GetThrowImage(1);
+            if (_gameManagement.PlayerHasfinished(1))
+            {
+                player1CurrentTarget.Text = "-";
+            }
+            else
+            {
+                player1CurrentTarget.Text = _gameManagement.GetCurrentScoreFromPlayer(1);
+            }
+
             player2ThrowLights.Image = GetThrowImage(2);
+            if (_gameManagement.PlayerHasfinished(2))
+            {
+                player2CurrentTarget.Text = "-";
+            }
+            else
+            {
+                player2CurrentTarget.Text = _gameManagement.GetCurrentScoreFromPlayer(2);
+            }
         }
 
         private Bitmap GetThrowImage(int playerNumber)
         {
-            if (_gameManagement.CurrentPlayer.Number == playerNumber)
+            var currentThrowFromPlayer = _gameManagement.GetCurrentThrowFromPlayer(playerNumber);
+            if (currentThrowFromPlayer == 1)
             {
-                if (_gameManagement.CurrentThrow == 1)
-                {
-                    return Resources.threeThrowsLeft;
-                }
-                if (_gameManagement.CurrentThrow == 2)
-                {
-                    return Resources.twoThrowsLeft;
-                }
-                if (_gameManagement.CurrentThrow == 3)
-                {
-                    return Resources.oneThrowLeft;
-                }
-
+                return Resources.threeThrowsLeft;
+            }
+            if (currentThrowFromPlayer == 2)
+            {
+                return Resources.twoThrowsLeft;
+            }
+            if (currentThrowFromPlayer == 3)
+            {
+                return Resources.oneThrowLeft;
             }
 
             return Resources.noThrowLeft;
@@ -73,6 +92,7 @@ namespace Darts_2012
             {
                 _gameManagement.PrepareGame(aroundTheClockDialog.CurrentGame);
                 InitializePlayerPanels();
+                Text = "Darts - " + _gameManagement.GetGameMode();
             }
             Enabled = true;
         }
@@ -81,14 +101,16 @@ namespace Darts_2012
         {
             player1Panel.Visible = false;
             player2Panel.Visible = false;
+
+            RefreshPanels();
+
             if (_gameManagement.GetPlayerCount() >= 1)
             {
-                player1CurrentTarget.Text = _gameManagement.GetCurrentScoreFromPlayer(1);
                 player1Panel.Visible = true;
             }
+
             if (_gameManagement.GetPlayerCount() >= 2)
             {
-                player2CurrentTarget.Text = _gameManagement.GetCurrentScoreFromPlayer(2);
                 player2Panel.Visible = true;
             }
         }

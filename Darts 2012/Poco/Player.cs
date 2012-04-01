@@ -4,8 +4,10 @@
     {
         public int Number { get; set; }
 
+        public int CurrentThrow { get; set; }
+
         public int CurrentScore { get; set; }
 
-        public Throw LastThrow { get; set; }
+        public bool HasFinished { get; set; }
     }
 }
