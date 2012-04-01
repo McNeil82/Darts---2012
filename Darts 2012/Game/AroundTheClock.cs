@@ -6,17 +6,17 @@ namespace Darts_2012.Game
     {
         private bool PlayerHasFinished { get; set; }
 
-        public int To { get; private set; }
+        private int ScoreToReach { get; set; }
 
-        public bool Skip { get; private set; }
+        private bool SkipsActivated { get; set; }
 
-        public bool Joker { get; private set; }
+        private bool JokersActivated { get; set; }
 
-        public AroundTheClock(int to, bool skip, bool joker)
+        public AroundTheClock(int scoreToReach, bool skipsActivated, bool jokersActivated)
         {
-            To = to;
-            Skip = skip;
-            Joker = joker;
+            ScoreToReach = scoreToReach;
+            SkipsActivated = skipsActivated;
+            JokersActivated = jokersActivated;
         }
 
         public override Player ProcessThrow(Throw @throw, Player player)
@@ -33,9 +33,9 @@ namespace Darts_2012.Game
             PlayerHasFinished = false;
             var newScore = currentScore;
 
-            if (@throw.Value == currentScore || (Joker && ThrowWasJoker(@throw.Value)))
+            if (@throw.Value == currentScore || (JokersActivated && ThrowIsJoker(@throw.Value)))
             {
-                if (Skip)
+                if (SkipsActivated)
                 {
                     newScore += @throw.Multiplier * 1;
                 }
@@ -44,9 +44,9 @@ namespace Darts_2012.Game
                     newScore++;
                 }
 
-                if (newScore > To)
+                if (newScore > ScoreToReach)
                 {
-                    newScore = To;
+                    newScore = ScoreToReach;
                     PlayerHasFinished = true;
                 }
             }
@@ -54,16 +54,16 @@ namespace Darts_2012.Game
             return newScore;
         }
 
-        private static bool ThrowWasJoker(int throwValue)
+        private static bool ThrowIsJoker(int throwValue)
         {
             return throwValue == 50 || throwValue == 25;
         }
 
         public override string GameMode()
         {
-            return "Around The Clock (" + InitialScore + " - " + To + ")"
-                + (Skip ? " mit Sprüngen" : " ohne Sprünge")
-                + (Joker ? " mit Jokern" : " ohne Joker");
+            return "Around The Clock (" + InitialScore + " - " + ScoreToReach + ")"
+                + (SkipsActivated ? " mit Sprüngen" : " ohne Sprünge")
+                + (JokersActivated ? " mit Jokern" : " ohne Joker");
         }
     }
 }

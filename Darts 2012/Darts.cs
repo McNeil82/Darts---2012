@@ -45,38 +45,30 @@ namespace Darts_2012
         private void RefreshPanels()
         {
             player1ThrowLights.Image = GetThrowImage(1);
-            if (_gameManagement.PlayerHasfinished(1))
-            {
-                player1CurrentTarget.Text = "-";
-            }
-            else
-            {
-                player1CurrentTarget.Text = _gameManagement.GetCurrentScoreFromPlayer(1);
-            }
+            player1CurrentTarget.Text = _gameManagement.PlayerHasfinished(1) ? "-" : _gameManagement.GetCurrentScoreFromPlayer(1);
 
             player2ThrowLights.Image = GetThrowImage(2);
-            if (_gameManagement.PlayerHasfinished(2))
-            {
-                player2CurrentTarget.Text = "-";
-            }
-            else
-            {
-                player2CurrentTarget.Text = _gameManagement.GetCurrentScoreFromPlayer(2);
-            }
+            player2CurrentTarget.Text = _gameManagement.PlayerHasfinished(2) ? "-" : _gameManagement.GetCurrentScoreFromPlayer(2);
+
+            player3ThrowLights.Image = GetThrowImage(3);
+            player3CurrentTarget.Text = _gameManagement.PlayerHasfinished(3) ? "-" : _gameManagement.GetCurrentScoreFromPlayer(3);
+
+            player4ThrowLights.Image = GetThrowImage(4);
+            player4CurrentTarget.Text = _gameManagement.PlayerHasfinished(4) ? "-" : _gameManagement.GetCurrentScoreFromPlayer(4);
         }
 
         private Bitmap GetThrowImage(int playerNumber)
         {
-            var currentThrowFromPlayer = _gameManagement.GetCurrentThrowFromPlayer(playerNumber);
-            if (currentThrowFromPlayer == 1)
+            var currentThrow = _gameManagement.GetCurrentThrowFromPlayer(playerNumber);
+            if (currentThrow == 1)
             {
                 return Resources.threeThrowsLeft;
             }
-            if (currentThrowFromPlayer == 2)
+            if (currentThrow == 2)
             {
                 return Resources.twoThrowsLeft;
             }
-            if (currentThrowFromPlayer == 3)
+            if (currentThrow == 3)
             {
                 return Resources.oneThrowLeft;
             }
@@ -101,6 +93,8 @@ namespace Darts_2012
         {
             player1Panel.Visible = false;
             player2Panel.Visible = false;
+            player3Panel.Visible = false;
+            player4Panel.Visible = false;
 
             RefreshPanels();
 
@@ -112,6 +106,16 @@ namespace Darts_2012
             if (_gameManagement.GetPlayerCount() >= 2)
             {
                 player2Panel.Visible = true;
+            }
+
+            if (_gameManagement.GetPlayerCount() >= 3)
+            {
+                player3Panel.Visible = true;
+            }
+
+            if (_gameManagement.GetPlayerCount() >= 4)
+            {
+                player4Panel.Visible = true;
             }
         }
     }
