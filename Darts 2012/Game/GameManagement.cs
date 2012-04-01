@@ -41,13 +41,17 @@ namespace Darts_2012.Game
             return Game.PlayerCount;
         }
 
-        public string GetPlayerScore(int playerNumber)
+        public string GetCurrentScoreFromPlayer(int playerNumber)
         {
             return Players[playerNumber - 1].CurrentScore.ToString();
         }
 
         public void ProcessThrow(Throw @throw)
         {
+            Game.CalculateScore(@throw, CurrentPlayer);
+            CurrentPlayer.LastThrow = @throw;
+
+
             CurrentThrow += 1;
             if (CurrentThrow > 3)
             {

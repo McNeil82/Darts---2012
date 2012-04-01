@@ -1,4 +1,6 @@
-﻿namespace Darts_2012.Game
+﻿using Darts_2012.Poco;
+
+namespace Darts_2012.Game
 {
     class AroundTheClock : AbstractDartsGame
     {
@@ -13,6 +15,19 @@
             To = to;
             Skip = skip;
             Joker = joker;
+        }
+
+        public override int CalculateScore(Throw @throw, Player player)
+        {
+            var newScore = player.CurrentScore;
+            var lastThrow = player.LastThrow;
+
+            if (lastThrow == null && @throw.Value == InitialScore)
+            {
+                newScore++;
+            }
+
+            return newScore;
         }
 
         public override string ToString()

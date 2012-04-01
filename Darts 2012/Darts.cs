@@ -72,23 +72,23 @@ namespace Darts_2012
             if (aroundTheClockDialog.ShowDialog() == DialogResult.OK)
             {
                 _gameManagement.PrepareGame(aroundTheClockDialog.CurrentGame);
-                ShowPlayerPanels();
+                InitializePlayerPanels();
             }
             Enabled = true;
         }
 
-        private void ShowPlayerPanels()
+        private void InitializePlayerPanels()
         {
             player1Panel.Visible = false;
             player2Panel.Visible = false;
             if (_gameManagement.GetPlayerCount() >= 1)
             {
-                player1CurrentTarget.Text = _gameManagement.GetPlayerScore(1);
+                player1CurrentTarget.Text = _gameManagement.GetCurrentScoreFromPlayer(1);
                 player1Panel.Visible = true;
             }
             if (_gameManagement.GetPlayerCount() >= 2)
             {
-                player2CurrentTarget.Text = _gameManagement.GetPlayerScore(2);
+                player2CurrentTarget.Text = _gameManagement.GetCurrentScoreFromPlayer(2);
                 player2Panel.Visible = true;
             }
         }
