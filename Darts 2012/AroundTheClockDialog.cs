@@ -18,6 +18,8 @@ namespace Darts_2012
 
         private void ComboBoxFromSelectedIndexChanged(object sender, EventArgs e)
         {
+            var previouslySelectedIndex = comboBoxTo.SelectedIndex;
+            var previousItemCount = comboBoxTo.Items.Count;
             comboBoxTo.Items.Clear();
             for (var itemIndex = comboBoxFrom.SelectedIndex + 1; itemIndex < 20; itemIndex++)
             {
@@ -27,6 +29,9 @@ namespace Darts_2012
             {
                 comboBoxTo.Items.Add(20);
             }
+
+            var newItemIndex = previouslySelectedIndex - (previousItemCount - comboBoxTo.Items.Count);
+            comboBoxTo.SelectedIndex = Math.Max(0, newItemIndex);
         }
 
         private void ButtonOkClick(object sender, EventArgs e)
