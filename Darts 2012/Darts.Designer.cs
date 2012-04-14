@@ -54,6 +54,7 @@
             this.player4CurrentTargetLabel = new System.Windows.Forms.Label();
             this.player4ThrowLights = new System.Windows.Forms.PictureBox();
             this.labelPlayer4Name = new System.Windows.Forms.Label();
+            this.x01ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.boardPictureBox)).BeginInit();
             this.player1Panel.SuspendLayout();
@@ -80,7 +81,8 @@
             // gameToolStripMenuItem
             // 
             this.gameToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.aroundTheClockToolStripMenuItem});
+            this.aroundTheClockToolStripMenuItem,
+            this.x01ToolStripMenuItem});
             this.gameToolStripMenuItem.Name = "gameToolStripMenuItem";
             this.gameToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.gameToolStripMenuItem.Text = "Spiel";
@@ -304,6 +306,13 @@
             this.labelPlayer4Name.TabIndex = 0;
             this.labelPlayer4Name.Text = "Spieler 4";
             // 
+            // x01ToolStripMenuItem
+            // 
+            this.x01ToolStripMenuItem.Name = "x01ToolStripMenuItem";
+            this.x01ToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.x01ToolStripMenuItem.Text = "X01";
+            this.x01ToolStripMenuItem.Click += new System.EventHandler(this.X01ToolStripMenuItemClick);
+            // 
             // Darts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -368,6 +377,7 @@
         private System.Windows.Forms.Label player4CurrentTargetLabel;
         private System.Windows.Forms.PictureBox player4ThrowLights;
         private System.Windows.Forms.Label labelPlayer4Name;
+        private System.Windows.Forms.ToolStripMenuItem x01ToolStripMenuItem;
 
 
 

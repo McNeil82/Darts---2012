@@ -72,17 +72,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AroundTheClockDialog.cs">
+    <Compile Include="Dialog\AroundTheClockDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AroundTheClockDialog.Designer.cs">
+    <Compile Include="Dialog\AroundTheClockDialog.Designer.cs">
       <DependentUpon>AroundTheClockDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Board.cs" />
+    <Compile Include="Dialog\X01Dialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog\X01Dialog.Designer.cs">
+      <DependentUpon>X01Dialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Game\AbstractDartsGame.cs" />
     <Compile Include="Game\AroundTheClock.cs" />
     <Compile Include="Game\DartsGame.cs" />
     <Compile Include="Game\GameManagement.cs" />
+    <Compile Include="Game\X01.cs" />
+    <Compile Include="Game\X01OutMode.cs" />
     <Compile Include="Poco\Circle.cs" />
     <Compile Include="Poco\Piece.cs" />
     <Compile Include="Poco\Player.cs" />
@@ -102,11 +110,14 @@
     <Compile Include="PlayerManagement.Designer.cs">
       <DependentUpon>PlayerManagement.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="AroundTheClockDialog.resx">
+    <EmbeddedResource Include="Dialog\AroundTheClockDialog.resx">
       <DependentUpon>AroundTheClockDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Darts.resx">
       <DependentUpon>Darts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialog\X01Dialog.resx">
+      <DependentUpon>X01Dialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

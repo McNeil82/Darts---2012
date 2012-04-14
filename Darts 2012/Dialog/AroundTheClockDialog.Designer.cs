@@ -1,4 +1,4 @@
-﻿namespace Darts_2012
+﻿namespace Darts_2012.Dialog
 {
     partial class AroundTheClockDialog
     {
@@ -206,7 +206,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AroundTheClockDialog";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "AroundTheClockDialog";
+            this.Text = "Around The Clock Einstellungen";
             this.ResumeLayout(false);
             this.PerformLayout();
 

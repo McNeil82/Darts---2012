@@ -28,7 +28,7 @@ namespace Darts_2012.Game
             return player;
         }
 
-        public int CalculateScore(Throw @throw, int currentScore)
+        private int CalculateScore(Throw @throw, int currentScore)
         {
             PlayerHasFinished = false;
             var newScore = currentScore;

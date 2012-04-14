@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using Darts_2012.Game;
 
-namespace Darts_2012
+namespace Darts_2012.Dialog
 {
     public partial class AroundTheClockDialog : Form
     {
@@ -40,10 +40,10 @@ namespace Darts_2012
             var skip = checkBoxSkip.Checked;
             var joker = checkBoxJoker.Checked;
             CurrentGame = new AroundTheClock(to, skip, joker)
-                              {
-                                  PlayerCount = Int16.Parse(comboBoxPlayerCount.SelectedItem.ToString()),
-                                  InitialScore = Int16.Parse(comboBoxFrom.SelectedItem.ToString())
-                              };
+            {
+                PlayerCount = Int16.Parse(comboBoxPlayerCount.SelectedItem.ToString()),
+                InitialScore = Int16.Parse(comboBoxFrom.SelectedItem.ToString())
+            };
         }
     }
 }

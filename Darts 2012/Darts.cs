@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using Darts_2012.Dialog;
 using Darts_2012.Game;
 using Darts_2012.Poco;
 using Darts_2012.Properties;
@@ -117,6 +118,19 @@ namespace Darts_2012
             {
                 player4Panel.Visible = true;
             }
+        }
+
+        private void X01ToolStripMenuItemClick(object sender, EventArgs e)
+        {
+            Enabled = false;
+            var x01Dialog = new X01Dialog();
+            if (x01Dialog.ShowDialog() == DialogResult.OK)
+            {
+                _gameManagement.PrepareGame(x01Dialog.CurrentGame);
+                InitializePlayerPanels();
+                Text = "Darts - " + _gameManagement.GetGameMode();
+            }
+            Enabled = true;
         }
     }
 }
