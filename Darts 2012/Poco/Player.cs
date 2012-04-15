@@ -9,5 +9,7 @@
         public int CurrentScore { get; set; }
 
         public bool HasFinished { get; set; }
+
+        public string AdditionalInfo { get; set; }
     }
 }

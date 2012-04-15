@@ -4,8 +4,6 @@ namespace Darts_2012.Game
 {
     class AroundTheClock : AbstractDartsGame
     {
-        private bool PlayerHasFinished { get; set; }
-
         private int ScoreToReach { get; set; }
 
         private bool SkipsActivated { get; set; }
@@ -19,21 +17,17 @@ namespace Darts_2012.Game
             JokersActivated = jokersActivated;
         }
 
-        public override Player ProcessThrow(Throw @throw, Player player)
+        public override void ProcessThrow(Throw @throw, ref Player player)
         {
             player.CurrentThrow++;
-            player.CurrentScore = CalculateScore(@throw, player.CurrentScore);
-            player.HasFinished = PlayerHasFinished;
-
-            return player;
+            CalculateScore(@throw, ref player);
         }
 
-        private int CalculateScore(Throw @throw, int currentScore)
+        private void CalculateScore(Throw @throw, ref Player player)
         {
-            PlayerHasFinished = false;
-            var newScore = currentScore;
+            var newScore = player.CurrentScore;
 
-            if (@throw.Value == currentScore || (JokersActivated && ThrowIsJoker(@throw.Value)))
+            if (@throw.Value == player.CurrentScore || (JokersActivated && ThrowIsJoker(@throw.Value)))
             {
                 if (SkipsActivated)
                 {
@@ -47,11 +41,11 @@ namespace Darts_2012.Game
                 if (newScore > ScoreToReach)
                 {
                     newScore = ScoreToReach;
-                    PlayerHasFinished = true;
+                    player.HasFinished = true;
                 }
             }
 
-            return newScore;
+            player.CurrentScore = newScore;
         }
 
         private static bool ThrowIsJoker(int throwValue)

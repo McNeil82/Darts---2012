@@ -42,7 +42,8 @@ namespace Darts_2012.Game
 
             if (!CurrentPlayer.HasFinished)
             {
-                CurrentPlayer = Game.ProcessThrow(@throw, CurrentPlayer);
+                var currentPlayer = CurrentPlayer;
+                Game.ProcessThrow(@throw, ref currentPlayer);
                 if (CurrentPlayer.HasFinished)
                 {
                     LastRound = true;
@@ -119,6 +120,17 @@ namespace Darts_2012.Game
         public string GetScoreLabel()
         {
             return Game.ScoreLabel();
+        }
+
+        public string GetAdditionalInfoForPlayer(int playerNumber)
+        {
+            if (playerNumber - 1 < Players.Length)
+            {
+                return Players[playerNumber - 1].AdditionalInfo;
+
+            }
+
+            return "";
         }
     }
 }

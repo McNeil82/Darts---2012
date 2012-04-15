@@ -48,18 +48,22 @@ namespace Darts_2012
             player1ThrowLights.Image = GetThrowImage(1);
             player1CurrentTargetLabel.Text = _gameManagement.GetScoreLabel();
             player1CurrentTarget.Text = _gameManagement.PlayerHasfinished(1) ? "-" : _gameManagement.GetCurrentScoreFromPlayer(1);
+            player1AdditionalInfo.Text = _gameManagement.GetAdditionalInfoForPlayer(1);
 
             player2ThrowLights.Image = GetThrowImage(2);
             player2CurrentTargetLabel.Text = _gameManagement.GetScoreLabel();
             player2CurrentTarget.Text = _gameManagement.PlayerHasfinished(2) ? "-" : _gameManagement.GetCurrentScoreFromPlayer(2);
+            player2AdditionalInfo.Text = _gameManagement.GetAdditionalInfoForPlayer(2);
 
             player3ThrowLights.Image = GetThrowImage(3);
             player3CurrentTargetLabel.Text = _gameManagement.GetScoreLabel();
             player3CurrentTarget.Text = _gameManagement.PlayerHasfinished(3) ? "-" : _gameManagement.GetCurrentScoreFromPlayer(3);
+            player3AdditionalInfo.Text = _gameManagement.GetAdditionalInfoForPlayer(3);
 
             player4ThrowLights.Image = GetThrowImage(4);
             player4CurrentTargetLabel.Text = _gameManagement.GetScoreLabel();
             player4CurrentTarget.Text = _gameManagement.PlayerHasfinished(4) ? "-" : _gameManagement.GetCurrentScoreFromPlayer(4);
+            player4AdditionalInfo.Text = _gameManagement.GetAdditionalInfoForPlayer(4);
         }
 
         private Bitmap GetThrowImage(int playerNumber)

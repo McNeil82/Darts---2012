@@ -8,7 +8,7 @@ namespace Darts_2012.Game
 
         public int InitialScore { get; set; }
 
-        public abstract Player ProcessThrow(Throw @throw, Player player);
+        public abstract void ProcessThrow(Throw @throw, ref Player player);
 
         public abstract string GameMode();
 

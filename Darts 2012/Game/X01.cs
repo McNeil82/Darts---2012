@@ -14,17 +14,20 @@ namespace Darts_2012.Game
             OutMode = outMode;
         }
 
-        public override Player ProcessThrow(Throw @throw, Player player)
+        public override void ProcessThrow(Throw @throw, ref Player player)
         {
             if (player.CurrentThrow == 1)
             {
                 ScoreAtBeginningOfRoundOfCurrentPlayer = player.CurrentScore;
             }
             player.CurrentThrow++;
+            CalculateScore(@throw, ref player);
+        }
 
-            if (NotDoubledInIfActivated(@throw, player))
+        private void CalculateScore(Throw @throw, ref Player player)
+        {
+            if (NotDoubledInIfActivated(player.CurrentScore, @throw.Multiplier))
             {
-
             }
             else
             {
@@ -33,7 +36,7 @@ namespace Darts_2012.Game
 
             if (player.CurrentScore < 0)
             {
-                EndRound(player);
+                EndRound(ref player);
             }
             else
             {
@@ -45,7 +48,7 @@ namespace Darts_2012.Game
                 {
                     if (player.CurrentScore == 1)
                     {
-                        EndRound(player);
+                        EndRound(ref player);
                     }
                     else if (player.CurrentScore == 0)
                     {
@@ -55,25 +58,22 @@ namespace Darts_2012.Game
                         }
                         else
                         {
-                            EndRound(player);
+                            EndRound(ref player);
                         }
                     }
                 }
             }
-
-
-            return player;
         }
 
-        private void EndRound(Player player)
+        private void EndRound(ref Player player)
         {
             player.CurrentScore = ScoreAtBeginningOfRoundOfCurrentPlayer;
             player.CurrentThrow = 4;
         }
 
-        private bool NotDoubledInIfActivated(Throw @throw, Player player)
+        private bool NotDoubledInIfActivated(int currentPlayerScore, int throwMultiplier)
         {
-            return player.CurrentScore == InitialScore && DoubleIn && @throw.Multiplier != 2;
+            return currentPlayerScore == InitialScore && DoubleIn && throwMultiplier != 2;
         }
 
         public override string GameMode()
