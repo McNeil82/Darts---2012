@@ -89,6 +89,8 @@
     <Compile Include="Game\AroundTheClock.cs" />
     <Compile Include="Game\DartsGame.cs" />
     <Compile Include="Game\GameManagement.cs" />
+    <Compile Include="Game\OutChart\DoubleOutChart.cs" />
+    <Compile Include="Game\OutChart\MasterOutChart.cs" />
     <Compile Include="Game\X01.cs" />
     <Compile Include="Game\X01OutMode.cs" />
     <Compile Include="Poco\Circle.cs" />

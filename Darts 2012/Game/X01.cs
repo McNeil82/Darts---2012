@@ -22,6 +22,7 @@ namespace Darts_2012.Game
             }
             player.CurrentThrow++;
             CalculateScore(@throw, ref player);
+            SetAdditionalInfo(ref player);
         }
 
         private void CalculateScore(Throw @throw, ref Player player)
@@ -65,15 +66,20 @@ namespace Darts_2012.Game
             }
         }
 
+        private bool NotDoubledInIfActivated(int currentPlayerScore, int throwMultiplier)
+        {
+            return currentPlayerScore == InitialScore && DoubleIn && throwMultiplier != 2;
+        }
+
         private void EndRound(ref Player player)
         {
             player.CurrentScore = ScoreAtBeginningOfRoundOfCurrentPlayer;
             player.CurrentThrow = 4;
         }
 
-        private bool NotDoubledInIfActivated(int currentPlayerScore, int throwMultiplier)
+        private void SetAdditionalInfo(ref Player player)
         {
-            return currentPlayerScore == InitialScore && DoubleIn && throwMultiplier != 2;
+            player.AdditionalInfo = "";
         }
 
         public override string GameMode()
