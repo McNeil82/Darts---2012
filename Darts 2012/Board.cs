@@ -34,8 +34,8 @@ namespace Darts_2012
 
         private static readonly List<Circle> Circles = new List<Circle>
                                                            {
-                                new Circle(15, 0, 50),
-                                new Circle(35, 0, 25),
+                                new Circle(15, 0, 2),
+                                new Circle(35, 0, 1),
                                 new Circle(188, 0, 1),
                                 new Circle(209, -1, 3),
                                 new Circle(313, -1, 1),
@@ -115,14 +115,13 @@ namespace Darts_2012
                 var circle = _circlePieces[circleIndex];
                 if (circle.GraphicsPath.IsVisible(gridX, gridY))
                 {
+                    @throw.Multiplier = circle.Value;
                     if (circleIndex < 2)
                     {
-                        @throw.Value = circle.Value;
-                        @throw.Multiplier = 1;
+                        @throw.Value = 25;
                         return @throw;
                     }
 
-                    @throw.Multiplier = circle.Value;
                     break;
                 }
             }

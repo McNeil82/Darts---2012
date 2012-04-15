@@ -50,7 +50,7 @@ namespace Darts_2012.Game
 
         private static bool ThrowIsJoker(int throwValue)
         {
-            return throwValue == 50 || throwValue == 25;
+            return throwValue == 25;
         }
 
         public override string GameMode()
