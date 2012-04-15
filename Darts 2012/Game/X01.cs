@@ -82,5 +82,10 @@ namespace Darts_2012.Game
                    (DoubleIn ? "Double In und " : "") +
                    X01OutMode.ToString(OutMode);
         }
+
+        public override string ScoreLabel()
+        {
+            return "verbleibende Punkte";
+        }
     }
 }

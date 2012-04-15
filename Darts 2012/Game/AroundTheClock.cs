@@ -65,5 +65,10 @@ namespace Darts_2012.Game
                 + (SkipsActivated ? " mit Sprüngen" : " ohne Sprünge")
                 + (JokersActivated ? " mit Jokern" : " ohne Joker");
         }
+
+        public override string ScoreLabel()
+        {
+            return "zu treffende Zahl";
+        }
     }
 }

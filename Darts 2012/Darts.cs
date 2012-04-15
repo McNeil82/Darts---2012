@@ -46,15 +46,19 @@ namespace Darts_2012
         private void RefreshPanels()
         {
             player1ThrowLights.Image = GetThrowImage(1);
+            player1CurrentTargetLabel.Text = _gameManagement.GetScoreLabel();
             player1CurrentTarget.Text = _gameManagement.PlayerHasfinished(1) ? "-" : _gameManagement.GetCurrentScoreFromPlayer(1);
 
             player2ThrowLights.Image = GetThrowImage(2);
+            player2CurrentTargetLabel.Text = _gameManagement.GetScoreLabel();
             player2CurrentTarget.Text = _gameManagement.PlayerHasfinished(2) ? "-" : _gameManagement.GetCurrentScoreFromPlayer(2);
 
             player3ThrowLights.Image = GetThrowImage(3);
+            player3CurrentTargetLabel.Text = _gameManagement.GetScoreLabel();
             player3CurrentTarget.Text = _gameManagement.PlayerHasfinished(3) ? "-" : _gameManagement.GetCurrentScoreFromPlayer(3);
 
             player4ThrowLights.Image = GetThrowImage(4);
+            player4CurrentTargetLabel.Text = _gameManagement.GetScoreLabel();
             player4CurrentTarget.Text = _gameManagement.PlayerHasfinished(4) ? "-" : _gameManagement.GetCurrentScoreFromPlayer(4);
         }
 
@@ -84,13 +88,13 @@ namespace Darts_2012
             if (aroundTheClockDialog.ShowDialog() == DialogResult.OK)
             {
                 _gameManagement.PrepareGame(aroundTheClockDialog.CurrentGame);
-                InitializePlayerPanels("zu treffende Zahl");
+                InitializePlayerPanels();
                 Text = "Darts - " + _gameManagement.GetGameMode();
             }
             Enabled = true;
         }
 
-        private void InitializePlayerPanels(string currentTargetLabel)
+        private void InitializePlayerPanels()
         {
             player1Panel.Visible = false;
             player2Panel.Visible = false;
@@ -102,25 +106,21 @@ namespace Darts_2012
             if (_gameManagement.GetPlayerCount() >= 1)
             {
                 player1Panel.Visible = true;
-                player1CurrentTargetLabel.Text = currentTargetLabel;
             }
 
             if (_gameManagement.GetPlayerCount() >= 2)
             {
                 player2Panel.Visible = true;
-                player2CurrentTargetLabel.Text = currentTargetLabel;
             }
 
             if (_gameManagement.GetPlayerCount() >= 3)
             {
                 player3Panel.Visible = true;
-                player3CurrentTargetLabel.Text = currentTargetLabel;
             }
 
             if (_gameManagement.GetPlayerCount() >= 4)
             {
                 player4Panel.Visible = true;
-                player4CurrentTargetLabel.Text = currentTargetLabel;
             }
         }
 
@@ -131,7 +131,7 @@ namespace Darts_2012
             if (x01Dialog.ShowDialog() == DialogResult.OK)
             {
                 _gameManagement.PrepareGame(x01Dialog.CurrentGame);
-                InitializePlayerPanels("verbleibende Punkte");
+                InitializePlayerPanels();
                 Text = "Darts - " + _gameManagement.GetGameMode();
             }
             Enabled = true;

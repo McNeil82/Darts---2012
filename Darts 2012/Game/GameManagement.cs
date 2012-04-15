@@ -4,7 +4,7 @@ namespace Darts_2012.Game
 {
     class GameManagement
     {
-        public bool GameInProgress { get; set; }
+        public bool GameInProgress { get; private set; }
 
         private IDartsGame Game { get; set; }
 
@@ -114,6 +114,11 @@ namespace Darts_2012.Game
         public string GetGameMode()
         {
             return Game.GameMode();
+        }
+
+        public string GetScoreLabel()
+        {
+            return Game.ScoreLabel();
         }
     }
 }

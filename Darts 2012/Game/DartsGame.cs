@@ -11,5 +11,7 @@ namespace Darts_2012.Game
         Player ProcessThrow(Throw @throw, Player player);
 
         string GameMode();
+
+        string ScoreLabel();
     }
 }

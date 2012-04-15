@@ -59,6 +59,10 @@
             this.labelPlayer4Name = new System.Windows.Forms.Label();
             this.player3ScorePanel = new System.Windows.Forms.FlowLayoutPanel();
             this.player4ScorePanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.player1AdditionalInfo = new System.Windows.Forms.Label();
+            this.player2AdditionalInfo = new System.Windows.Forms.Label();
+            this.player3AdditionalInfo = new System.Windows.Forms.Label();
+            this.player4AdditionalInfo = new System.Windows.Forms.Label();
             this.mainMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.boardPictureBox)).BeginInit();
             this.player1Panel.SuspendLayout();
@@ -131,6 +135,7 @@
             // 
             // player1Panel
             // 
+            this.player1Panel.Controls.Add(this.player1AdditionalInfo);
             this.player1Panel.Controls.Add(this.player1ScorePanel);
             this.player1Panel.Controls.Add(this.player1ThrowLights);
             this.player1Panel.Controls.Add(this.labelPlayer1Name);
@@ -188,6 +193,7 @@
             // 
             // player2Panel
             // 
+            this.player2Panel.Controls.Add(this.player2AdditionalInfo);
             this.player2Panel.Controls.Add(this.player2ScorePanel);
             this.player2Panel.Controls.Add(this.player2ThrowLights);
             this.player2Panel.Controls.Add(this.labelPlayer2Name);
@@ -245,6 +251,7 @@
             // 
             // player3Panel
             // 
+            this.player3Panel.Controls.Add(this.player3AdditionalInfo);
             this.player3Panel.Controls.Add(this.player3ScorePanel);
             this.player3Panel.Controls.Add(this.player3ThrowLights);
             this.player3Panel.Controls.Add(this.labelPlayer3Name);
@@ -293,6 +300,7 @@
             // 
             // player4Panel
             // 
+            this.player4Panel.Controls.Add(this.player4AdditionalInfo);
             this.player4Panel.Controls.Add(this.player4ScorePanel);
             this.player4Panel.Controls.Add(this.player4ThrowLights);
             this.player4Panel.Controls.Add(this.labelPlayer4Name);
@@ -356,6 +364,42 @@
             this.player4ScorePanel.Name = "player4ScorePanel";
             this.player4ScorePanel.Size = new System.Drawing.Size(500, 50);
             this.player4ScorePanel.TabIndex = 5;
+            // 
+            // player1AdditionalInfo
+            // 
+            this.player1AdditionalInfo.AutoSize = true;
+            this.player1AdditionalInfo.Location = new System.Drawing.Point(4, 160);
+            this.player1AdditionalInfo.Name = "player1AdditionalInfo";
+            this.player1AdditionalInfo.Size = new System.Drawing.Size(61, 13);
+            this.player1AdditionalInfo.TabIndex = 5;
+            this.player1AdditionalInfo.Text = "Zusatzinfos";
+            // 
+            // player2AdditionalInfo
+            // 
+            this.player2AdditionalInfo.AutoSize = true;
+            this.player2AdditionalInfo.Location = new System.Drawing.Point(4, 160);
+            this.player2AdditionalInfo.Name = "player2AdditionalInfo";
+            this.player2AdditionalInfo.Size = new System.Drawing.Size(61, 13);
+            this.player2AdditionalInfo.TabIndex = 6;
+            this.player2AdditionalInfo.Text = "Zusatzinfos";
+            // 
+            // player3AdditionalInfo
+            // 
+            this.player3AdditionalInfo.AutoSize = true;
+            this.player3AdditionalInfo.Location = new System.Drawing.Point(4, 160);
+            this.player3AdditionalInfo.Name = "player3AdditionalInfo";
+            this.player3AdditionalInfo.Size = new System.Drawing.Size(61, 13);
+            this.player3AdditionalInfo.TabIndex = 7;
+            this.player3AdditionalInfo.Text = "Zusatzinfos";
+            // 
+            // player4AdditionalInfo
+            // 
+            this.player4AdditionalInfo.AutoSize = true;
+            this.player4AdditionalInfo.Location = new System.Drawing.Point(4, 160);
+            this.player4AdditionalInfo.Name = "player4AdditionalInfo";
+            this.player4AdditionalInfo.Size = new System.Drawing.Size(61, 13);
+            this.player4AdditionalInfo.TabIndex = 8;
+            this.player4AdditionalInfo.Text = "Zusatzinfos";
             // 
             // Darts
             // 
@@ -434,6 +478,10 @@
         private System.Windows.Forms.FlowLayoutPanel player2ScorePanel;
         private System.Windows.Forms.FlowLayoutPanel player3ScorePanel;
         private System.Windows.Forms.FlowLayoutPanel player4ScorePanel;
+        private System.Windows.Forms.Label player1AdditionalInfo;
+        private System.Windows.Forms.Label player2AdditionalInfo;
+        private System.Windows.Forms.Label player3AdditionalInfo;
+        private System.Windows.Forms.Label player4AdditionalInfo;
 
 
 
