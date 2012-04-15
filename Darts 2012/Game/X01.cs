@@ -1,5 +1,4 @@
-﻿using System;
-using Darts_2012.Poco;
+﻿using Darts_2012.Poco;
 
 namespace Darts_2012.Game
 {
@@ -7,6 +6,7 @@ namespace Darts_2012.Game
     {
         private bool DoubleIn { get; set; }
         private X01OutMode.OutMode OutMode { get; set; }
+        private int ScoreAtBeginningOfRoundOfCurrentPlayer { get; set; }
 
         public X01(bool doubleIn, X01OutMode.OutMode outMode)
         {
@@ -16,32 +16,71 @@ namespace Darts_2012.Game
 
         public override Player ProcessThrow(Throw @throw, Player player)
         {
+            if (player.CurrentThrow == 1)
+            {
+                ScoreAtBeginningOfRoundOfCurrentPlayer = player.CurrentScore;
+            }
             player.CurrentThrow++;
+
+            if (NotDoubledInIfActivated(@throw, player))
+            {
+
+            }
+            else
+            {
+                player.CurrentScore -= @throw.Value * @throw.Multiplier;
+            }
+
+            if (player.CurrentScore < 0)
+            {
+                EndRound(player);
+            }
+            else
+            {
+                if (OutMode == X01OutMode.OutMode.StraightOut && player.CurrentScore == 0)
+                {
+                    player.HasFinished = true;
+                }
+                else if (OutMode == X01OutMode.OutMode.DoubleOut || OutMode == X01OutMode.OutMode.MasterOut)
+                {
+                    if (player.CurrentScore == 1)
+                    {
+                        EndRound(player);
+                    }
+                    else if (player.CurrentScore == 0)
+                    {
+                        if (@throw.Multiplier == 2 || (OutMode == X01OutMode.OutMode.MasterOut && @throw.Multiplier == 3))
+                        {
+                            player.HasFinished = true;
+                        }
+                        else
+                        {
+                            EndRound(player);
+                        }
+                    }
+                }
+            }
+
 
             return player;
         }
 
+        private void EndRound(Player player)
+        {
+            player.CurrentScore = ScoreAtBeginningOfRoundOfCurrentPlayer;
+            player.CurrentThrow = 4;
+        }
+
+        private bool NotDoubledInIfActivated(Throw @throw, Player player)
+        {
+            return player.CurrentScore == InitialScore && DoubleIn && @throw.Multiplier != 2;
+        }
+
         public override string GameMode()
         {
-            string outModeString;
-            switch (OutMode)
-            {
-                case X01OutMode.OutMode.DoubleOut:
-                    outModeString = "Double Out";
-                    break;
-                case X01OutMode.OutMode.MasterOut:
-                    outModeString = "Master Out";
-                    break;
-                case X01OutMode.OutMode.StraightOut:
-                    outModeString = "Straight Out";
-                    break;
-                default:
-                    outModeString = "Straight Out";
-                    break;
-            }
             return InitialScore + " mit " +
-                (DoubleIn ? "Double In und " : "") +
-                outModeString;
+                   (DoubleIn ? "Double In und " : "") +
+                   X01OutMode.ToString(OutMode);
         }
     }
 }

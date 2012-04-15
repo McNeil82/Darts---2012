@@ -32,6 +32,7 @@
             this.mainMenu = new System.Windows.Forms.MenuStrip();
             this.gameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aroundTheClockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.x01ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.playerManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.boardPictureBox = new System.Windows.Forms.PictureBox();
             this.player1Panel = new System.Windows.Forms.Panel();
@@ -54,7 +55,6 @@
             this.player4CurrentTargetLabel = new System.Windows.Forms.Label();
             this.player4ThrowLights = new System.Windows.Forms.PictureBox();
             this.labelPlayer4Name = new System.Windows.Forms.Label();
-            this.x01ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.boardPictureBox)).BeginInit();
             this.player1Panel.SuspendLayout();
@@ -94,6 +94,13 @@
             this.aroundTheClockToolStripMenuItem.Text = "Around The Clock";
             this.aroundTheClockToolStripMenuItem.Click += new System.EventHandler(this.AroundTheClockToolStripMenuItemClick);
             // 
+            // x01ToolStripMenuItem
+            // 
+            this.x01ToolStripMenuItem.Name = "x01ToolStripMenuItem";
+            this.x01ToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.x01ToolStripMenuItem.Text = "X01";
+            this.x01ToolStripMenuItem.Click += new System.EventHandler(this.X01ToolStripMenuItemClick);
+            // 
             // playerManagementToolStripMenuItem
             // 
             this.playerManagementToolStripMenuItem.Name = "playerManagementToolStripMenuItem";
@@ -129,10 +136,11 @@
             // player1CurrentTarget
             // 
             this.player1CurrentTarget.AutoSize = true;
-            this.player1CurrentTarget.Location = new System.Drawing.Point(91, 68);
+            this.player1CurrentTarget.Location = new System.Drawing.Point(110, 68);
             this.player1CurrentTarget.Name = "player1CurrentTarget";
-            this.player1CurrentTarget.Size = new System.Drawing.Size(0, 13);
+            this.player1CurrentTarget.Size = new System.Drawing.Size(13, 13);
             this.player1CurrentTarget.TabIndex = 3;
+            this.player1CurrentTarget.Text = "5";
             // 
             // player1CurrentTargetLabel
             // 
@@ -177,10 +185,11 @@
             // player2CurrentTarget
             // 
             this.player2CurrentTarget.AutoSize = true;
-            this.player2CurrentTarget.Location = new System.Drawing.Point(91, 68);
+            this.player2CurrentTarget.Location = new System.Drawing.Point(110, 68);
             this.player2CurrentTarget.Name = "player2CurrentTarget";
-            this.player2CurrentTarget.Size = new System.Drawing.Size(0, 13);
+            this.player2CurrentTarget.Size = new System.Drawing.Size(13, 13);
             this.player2CurrentTarget.TabIndex = 4;
+            this.player2CurrentTarget.Text = "5";
             // 
             // player2CurrentTargetLabel
             // 
@@ -225,10 +234,11 @@
             // player3CurrentTarget
             // 
             this.player3CurrentTarget.AutoSize = true;
-            this.player3CurrentTarget.Location = new System.Drawing.Point(91, 68);
+            this.player3CurrentTarget.Location = new System.Drawing.Point(110, 68);
             this.player3CurrentTarget.Name = "player3CurrentTarget";
-            this.player3CurrentTarget.Size = new System.Drawing.Size(0, 13);
+            this.player3CurrentTarget.Size = new System.Drawing.Size(13, 13);
             this.player3CurrentTarget.TabIndex = 4;
+            this.player3CurrentTarget.Text = "5";
             // 
             // player3CurrentTargetLabel
             // 
@@ -273,10 +283,11 @@
             // player4CurrentTarget
             // 
             this.player4CurrentTarget.AutoSize = true;
-            this.player4CurrentTarget.Location = new System.Drawing.Point(91, 68);
+            this.player4CurrentTarget.Location = new System.Drawing.Point(110, 68);
             this.player4CurrentTarget.Name = "player4CurrentTarget";
-            this.player4CurrentTarget.Size = new System.Drawing.Size(0, 13);
+            this.player4CurrentTarget.Size = new System.Drawing.Size(13, 13);
             this.player4CurrentTarget.TabIndex = 4;
+            this.player4CurrentTarget.Text = "5";
             // 
             // player4CurrentTargetLabel
             // 
@@ -305,13 +316,6 @@
             this.labelPlayer4Name.Size = new System.Drawing.Size(48, 13);
             this.labelPlayer4Name.TabIndex = 0;
             this.labelPlayer4Name.Text = "Spieler 4";
-            // 
-            // x01ToolStripMenuItem
-            // 
-            this.x01ToolStripMenuItem.Name = "x01ToolStripMenuItem";
-            this.x01ToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
-            this.x01ToolStripMenuItem.Text = "X01";
-            this.x01ToolStripMenuItem.Click += new System.EventHandler(this.X01ToolStripMenuItemClick);
             // 
             // Darts
             // 
