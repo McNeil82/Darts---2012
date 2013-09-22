@@ -30,8 +30,8 @@ namespace Darts_2012
         {
             if (_gameManagement.GameInProgress)
             {
-                var centerX = (boardPictureBox.Width / 2) + 5;
-                var centerY = (boardPictureBox.Height / 2) - 4;
+                var centerX = (boardPictureBox.Width/2) + 5;
+                var centerY = (boardPictureBox.Height/2) - 4;
                 var @throw = Board.DetectThrow(mouseEventArgs.X, mouseEventArgs.Y, centerX, centerY);
                 ProcessThrow(@throw);
             }
@@ -47,22 +47,30 @@ namespace Darts_2012
         {
             player1ThrowLights.Image = GetThrowImage(1);
             player1CurrentTargetLabel.Text = _gameManagement.GetScoreLabel();
-            player1CurrentTarget.Text = _gameManagement.PlayerHasfinished(1) ? "-" : _gameManagement.GetCurrentScoreFromPlayer(1);
+            player1CurrentTarget.Text = _gameManagement.PlayerHasfinished(1)
+                ? "-"
+                : _gameManagement.GetCurrentScoreFromPlayer(1);
             player1AdditionalInfo.Text = _gameManagement.GetAdditionalInfoForPlayer(1);
 
             player2ThrowLights.Image = GetThrowImage(2);
             player2CurrentTargetLabel.Text = _gameManagement.GetScoreLabel();
-            player2CurrentTarget.Text = _gameManagement.PlayerHasfinished(2) ? "-" : _gameManagement.GetCurrentScoreFromPlayer(2);
+            player2CurrentTarget.Text = _gameManagement.PlayerHasfinished(2)
+                ? "-"
+                : _gameManagement.GetCurrentScoreFromPlayer(2);
             player2AdditionalInfo.Text = _gameManagement.GetAdditionalInfoForPlayer(2);
 
             player3ThrowLights.Image = GetThrowImage(3);
             player3CurrentTargetLabel.Text = _gameManagement.GetScoreLabel();
-            player3CurrentTarget.Text = _gameManagement.PlayerHasfinished(3) ? "-" : _gameManagement.GetCurrentScoreFromPlayer(3);
+            player3CurrentTarget.Text = _gameManagement.PlayerHasfinished(3)
+                ? "-"
+                : _gameManagement.GetCurrentScoreFromPlayer(3);
             player3AdditionalInfo.Text = _gameManagement.GetAdditionalInfoForPlayer(3);
 
             player4ThrowLights.Image = GetThrowImage(4);
             player4CurrentTargetLabel.Text = _gameManagement.GetScoreLabel();
-            player4CurrentTarget.Text = _gameManagement.PlayerHasfinished(4) ? "-" : _gameManagement.GetCurrentScoreFromPlayer(4);
+            player4CurrentTarget.Text = _gameManagement.PlayerHasfinished(4)
+                ? "-"
+                : _gameManagement.GetCurrentScoreFromPlayer(4);
             player4AdditionalInfo.Text = _gameManagement.GetAdditionalInfoForPlayer(4);
         }
 
@@ -139,6 +147,102 @@ namespace Darts_2012
                 Text = "Darts - " + _gameManagement.GetGameMode();
             }
             Enabled = true;
+        }
+
+        private void TextBoxPlayer1NameEnter(object sender, EventArgs e)
+        {
+            textBoxPlayer1Name.ReadOnly = false;
+        }
+
+        private void TextBoxPlayer1NameKeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char) Keys.Enter)
+            {
+                LeaveTextBoxPlayer1Name();
+                player1Panel.Focus();
+            }
+        }
+
+        private void TextBoxPlayer1NameLeave(object sender, EventArgs e)
+        {
+            LeaveTextBoxPlayer1Name();
+        }
+
+        private void LeaveTextBoxPlayer1Name()
+        {
+            textBoxPlayer1Name.ReadOnly = true;
+        }
+
+        private void TextBoxPlayer2NameEnter(object sender, EventArgs e)
+        {
+            textBoxPlayer2Name.ReadOnly = false;
+        }
+
+        private void TextBoxPlayer2NameKeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char) Keys.Enter)
+            {
+                LeaveTextBoxPlayer2Name();
+                player2Panel.Focus();
+            }
+        }
+
+        private void TextBoxPlayer2NameLeave(object sender, EventArgs e)
+        {
+            LeaveTextBoxPlayer2Name();
+        }
+
+        private void LeaveTextBoxPlayer2Name()
+        {
+            textBoxPlayer2Name.ReadOnly = true;
+        }
+
+        private void TextBoxPlayer3NameEnter(object sender, EventArgs e)
+        {
+            textBoxPlayer3Name.ReadOnly = false;
+        }
+
+        private void TextBoxPlayer3NameLeave(object sender, EventArgs e)
+        {
+            LeaveTextBoxPlayer3Name();
+        }
+
+        private void LeaveTextBoxPlayer3Name()
+        {
+            textBoxPlayer3Name.ReadOnly = true;
+        }
+
+        private void TextBoxPlayer3NameKeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char) Keys.Enter)
+            {
+                LeaveTextBoxPlayer3Name();
+                player3Panel.Focus();
+            }
+        }
+
+        private void TextBoxPlayer4NameEnter(object sender, EventArgs e)
+        {
+            textBoxPlayer4Name.ReadOnly = false;
+        }
+
+        private void TextBoxPlayer4NameLeave(object sender, EventArgs e)
+        {
+            LeaveTextBoxPlayer4Name();
+        }
+
+        private void LeaveTextBoxPlayer4Name()
+        {
+            textBoxPlayer4Name.ReadOnly = true;
+        }
+
+        private void TextBoxPlayer4NameKeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char) Keys.Enter)
+            {
+                LeaveTextBoxPlayer4Name();
+                player4Panel.Focus();
+            }
         }
     }
 }

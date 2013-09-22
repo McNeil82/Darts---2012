@@ -36,33 +36,33 @@
             this.playerManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.boardPictureBox = new System.Windows.Forms.PictureBox();
             this.player1Panel = new System.Windows.Forms.Panel();
+            this.textBoxPlayer1Name = new System.Windows.Forms.TextBox();
+            this.player1AdditionalInfo = new System.Windows.Forms.Label();
             this.player1ScorePanel = new System.Windows.Forms.FlowLayoutPanel();
             this.player1CurrentTargetLabel = new System.Windows.Forms.Label();
             this.player1CurrentTarget = new System.Windows.Forms.Label();
             this.player1ThrowLights = new System.Windows.Forms.PictureBox();
-            this.labelPlayer1Name = new System.Windows.Forms.Label();
             this.player2Panel = new System.Windows.Forms.Panel();
+            this.textBoxPlayer2Name = new System.Windows.Forms.TextBox();
+            this.player2AdditionalInfo = new System.Windows.Forms.Label();
             this.player2ScorePanel = new System.Windows.Forms.FlowLayoutPanel();
             this.player2CurrentTargetLabel = new System.Windows.Forms.Label();
             this.player2CurrentTarget = new System.Windows.Forms.Label();
             this.player2ThrowLights = new System.Windows.Forms.PictureBox();
-            this.labelPlayer2Name = new System.Windows.Forms.Label();
             this.player3Panel = new System.Windows.Forms.Panel();
-            this.player3CurrentTarget = new System.Windows.Forms.Label();
-            this.player3CurrentTargetLabel = new System.Windows.Forms.Label();
-            this.player3ThrowLights = new System.Windows.Forms.PictureBox();
-            this.labelPlayer3Name = new System.Windows.Forms.Label();
-            this.player4Panel = new System.Windows.Forms.Panel();
-            this.player4CurrentTarget = new System.Windows.Forms.Label();
-            this.player4CurrentTargetLabel = new System.Windows.Forms.Label();
-            this.player4ThrowLights = new System.Windows.Forms.PictureBox();
-            this.labelPlayer4Name = new System.Windows.Forms.Label();
-            this.player3ScorePanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.player4ScorePanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.player1AdditionalInfo = new System.Windows.Forms.Label();
-            this.player2AdditionalInfo = new System.Windows.Forms.Label();
+            this.textBoxPlayer3Name = new System.Windows.Forms.TextBox();
             this.player3AdditionalInfo = new System.Windows.Forms.Label();
+            this.player3ScorePanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.player3CurrentTargetLabel = new System.Windows.Forms.Label();
+            this.player3CurrentTarget = new System.Windows.Forms.Label();
+            this.player3ThrowLights = new System.Windows.Forms.PictureBox();
+            this.player4Panel = new System.Windows.Forms.Panel();
+            this.textBoxPlayer4Name = new System.Windows.Forms.TextBox();
             this.player4AdditionalInfo = new System.Windows.Forms.Label();
+            this.player4ScorePanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.player4CurrentTargetLabel = new System.Windows.Forms.Label();
+            this.player4CurrentTarget = new System.Windows.Forms.Label();
+            this.player4ThrowLights = new System.Windows.Forms.PictureBox();
             this.mainMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.boardPictureBox)).BeginInit();
             this.player1Panel.SuspendLayout();
@@ -72,11 +72,11 @@
             this.player2ScorePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.player2ThrowLights)).BeginInit();
             this.player3Panel.SuspendLayout();
+            this.player3ScorePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.player3ThrowLights)).BeginInit();
             this.player4Panel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.player4ThrowLights)).BeginInit();
-            this.player3ScorePanel.SuspendLayout();
             this.player4ScorePanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.player4ThrowLights)).BeginInit();
             this.SuspendLayout();
             // 
             // mainMenu
@@ -135,15 +135,37 @@
             // 
             // player1Panel
             // 
+            this.player1Panel.Controls.Add(this.textBoxPlayer1Name);
             this.player1Panel.Controls.Add(this.player1AdditionalInfo);
             this.player1Panel.Controls.Add(this.player1ScorePanel);
             this.player1Panel.Controls.Add(this.player1ThrowLights);
-            this.player1Panel.Controls.Add(this.labelPlayer1Name);
             this.player1Panel.Location = new System.Drawing.Point(12, 27);
             this.player1Panel.Name = "player1Panel";
             this.player1Panel.Size = new System.Drawing.Size(500, 500);
             this.player1Panel.TabIndex = 4;
             this.player1Panel.Visible = false;
+            // 
+            // textBoxPlayer1Name
+            // 
+            this.textBoxPlayer1Name.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxPlayer1Name.Location = new System.Drawing.Point(7, 4);
+            this.textBoxPlayer1Name.Name = "textBoxPlayer1Name";
+            this.textBoxPlayer1Name.ReadOnly = true;
+            this.textBoxPlayer1Name.Size = new System.Drawing.Size(52, 13);
+            this.textBoxPlayer1Name.TabIndex = 6;
+            this.textBoxPlayer1Name.Text = "Spieler 1";
+            this.textBoxPlayer1Name.Enter += new System.EventHandler(this.TextBoxPlayer1NameEnter);
+            this.textBoxPlayer1Name.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxPlayer1NameKeyPress);
+            this.textBoxPlayer1Name.Leave += new System.EventHandler(this.TextBoxPlayer1NameLeave);
+            // 
+            // player1AdditionalInfo
+            // 
+            this.player1AdditionalInfo.AutoSize = true;
+            this.player1AdditionalInfo.Location = new System.Drawing.Point(4, 160);
+            this.player1AdditionalInfo.Name = "player1AdditionalInfo";
+            this.player1AdditionalInfo.Size = new System.Drawing.Size(61, 13);
+            this.player1AdditionalInfo.TabIndex = 5;
+            this.player1AdditionalInfo.Text = "Zusatzinfos";
             // 
             // player1ScorePanel
             // 
@@ -182,26 +204,39 @@
             this.player1ThrowLights.TabIndex = 1;
             this.player1ThrowLights.TabStop = false;
             // 
-            // labelPlayer1Name
-            // 
-            this.labelPlayer1Name.AutoSize = true;
-            this.labelPlayer1Name.Location = new System.Drawing.Point(4, 4);
-            this.labelPlayer1Name.Name = "labelPlayer1Name";
-            this.labelPlayer1Name.Size = new System.Drawing.Size(48, 13);
-            this.labelPlayer1Name.TabIndex = 0;
-            this.labelPlayer1Name.Text = "Spieler 1";
-            // 
             // player2Panel
             // 
+            this.player2Panel.Controls.Add(this.textBoxPlayer2Name);
             this.player2Panel.Controls.Add(this.player2AdditionalInfo);
             this.player2Panel.Controls.Add(this.player2ScorePanel);
             this.player2Panel.Controls.Add(this.player2ThrowLights);
-            this.player2Panel.Controls.Add(this.labelPlayer2Name);
             this.player2Panel.Location = new System.Drawing.Point(12, 533);
             this.player2Panel.Name = "player2Panel";
             this.player2Panel.Size = new System.Drawing.Size(500, 500);
             this.player2Panel.TabIndex = 5;
             this.player2Panel.Visible = false;
+            // 
+            // textBoxPlayer2Name
+            // 
+            this.textBoxPlayer2Name.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxPlayer2Name.Location = new System.Drawing.Point(7, 4);
+            this.textBoxPlayer2Name.Name = "textBoxPlayer2Name";
+            this.textBoxPlayer2Name.ReadOnly = true;
+            this.textBoxPlayer2Name.Size = new System.Drawing.Size(52, 13);
+            this.textBoxPlayer2Name.TabIndex = 7;
+            this.textBoxPlayer2Name.Text = "Spieler 2";
+            this.textBoxPlayer2Name.Enter += new System.EventHandler(this.TextBoxPlayer2NameEnter);
+            this.textBoxPlayer2Name.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxPlayer2NameKeyPress);
+            this.textBoxPlayer2Name.Leave += new System.EventHandler(this.TextBoxPlayer2NameLeave);
+            // 
+            // player2AdditionalInfo
+            // 
+            this.player2AdditionalInfo.AutoSize = true;
+            this.player2AdditionalInfo.Location = new System.Drawing.Point(4, 160);
+            this.player2AdditionalInfo.Name = "player2AdditionalInfo";
+            this.player2AdditionalInfo.Size = new System.Drawing.Size(61, 13);
+            this.player2AdditionalInfo.TabIndex = 6;
+            this.player2AdditionalInfo.Text = "Zusatzinfos";
             // 
             // player2ScorePanel
             // 
@@ -240,35 +275,48 @@
             this.player2ThrowLights.TabIndex = 2;
             this.player2ThrowLights.TabStop = false;
             // 
-            // labelPlayer2Name
-            // 
-            this.labelPlayer2Name.AutoSize = true;
-            this.labelPlayer2Name.Location = new System.Drawing.Point(4, 4);
-            this.labelPlayer2Name.Name = "labelPlayer2Name";
-            this.labelPlayer2Name.Size = new System.Drawing.Size(48, 13);
-            this.labelPlayer2Name.TabIndex = 0;
-            this.labelPlayer2Name.Text = "Spieler 2";
-            // 
             // player3Panel
             // 
+            this.player3Panel.Controls.Add(this.textBoxPlayer3Name);
             this.player3Panel.Controls.Add(this.player3AdditionalInfo);
             this.player3Panel.Controls.Add(this.player3ScorePanel);
             this.player3Panel.Controls.Add(this.player3ThrowLights);
-            this.player3Panel.Controls.Add(this.labelPlayer3Name);
             this.player3Panel.Location = new System.Drawing.Point(1399, 27);
             this.player3Panel.Name = "player3Panel";
             this.player3Panel.Size = new System.Drawing.Size(500, 500);
             this.player3Panel.TabIndex = 6;
             this.player3Panel.Visible = false;
             // 
-            // player3CurrentTarget
+            // textBoxPlayer3Name
             // 
-            this.player3CurrentTarget.AutoSize = true;
-            this.player3CurrentTarget.Location = new System.Drawing.Point(96, 0);
-            this.player3CurrentTarget.Name = "player3CurrentTarget";
-            this.player3CurrentTarget.Size = new System.Drawing.Size(13, 13);
-            this.player3CurrentTarget.TabIndex = 4;
-            this.player3CurrentTarget.Text = "5";
+            this.textBoxPlayer3Name.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxPlayer3Name.Location = new System.Drawing.Point(7, 4);
+            this.textBoxPlayer3Name.Name = "textBoxPlayer3Name";
+            this.textBoxPlayer3Name.ReadOnly = true;
+            this.textBoxPlayer3Name.Size = new System.Drawing.Size(52, 13);
+            this.textBoxPlayer3Name.TabIndex = 8;
+            this.textBoxPlayer3Name.Text = "Spieler 3";
+            this.textBoxPlayer3Name.Enter += new System.EventHandler(this.TextBoxPlayer3NameEnter);
+            this.textBoxPlayer3Name.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxPlayer3NameKeyPress);
+            this.textBoxPlayer3Name.Leave += new System.EventHandler(this.TextBoxPlayer3NameLeave);
+            // 
+            // player3AdditionalInfo
+            // 
+            this.player3AdditionalInfo.AutoSize = true;
+            this.player3AdditionalInfo.Location = new System.Drawing.Point(4, 160);
+            this.player3AdditionalInfo.Name = "player3AdditionalInfo";
+            this.player3AdditionalInfo.Size = new System.Drawing.Size(61, 13);
+            this.player3AdditionalInfo.TabIndex = 7;
+            this.player3AdditionalInfo.Text = "Zusatzinfos";
+            // 
+            // player3ScorePanel
+            // 
+            this.player3ScorePanel.Controls.Add(this.player3CurrentTargetLabel);
+            this.player3ScorePanel.Controls.Add(this.player3CurrentTarget);
+            this.player3ScorePanel.Location = new System.Drawing.Point(0, 55);
+            this.player3ScorePanel.Name = "player3ScorePanel";
+            this.player3ScorePanel.Size = new System.Drawing.Size(500, 50);
+            this.player3ScorePanel.TabIndex = 5;
             // 
             // player3CurrentTargetLabel
             // 
@@ -278,6 +326,15 @@
             this.player3CurrentTargetLabel.Size = new System.Drawing.Size(87, 13);
             this.player3CurrentTargetLabel.TabIndex = 3;
             this.player3CurrentTargetLabel.Text = "zu treffende Zahl";
+            // 
+            // player3CurrentTarget
+            // 
+            this.player3CurrentTarget.AutoSize = true;
+            this.player3CurrentTarget.Location = new System.Drawing.Point(96, 0);
+            this.player3CurrentTarget.Name = "player3CurrentTarget";
+            this.player3CurrentTarget.Size = new System.Drawing.Size(13, 13);
+            this.player3CurrentTarget.TabIndex = 4;
+            this.player3CurrentTarget.Text = "5";
             // 
             // player3ThrowLights
             // 
@@ -289,72 +346,39 @@
             this.player3ThrowLights.TabIndex = 2;
             this.player3ThrowLights.TabStop = false;
             // 
-            // labelPlayer3Name
-            // 
-            this.labelPlayer3Name.AutoSize = true;
-            this.labelPlayer3Name.Location = new System.Drawing.Point(4, 4);
-            this.labelPlayer3Name.Name = "labelPlayer3Name";
-            this.labelPlayer3Name.Size = new System.Drawing.Size(48, 13);
-            this.labelPlayer3Name.TabIndex = 0;
-            this.labelPlayer3Name.Text = "Spieler 3";
-            // 
             // player4Panel
             // 
+            this.player4Panel.Controls.Add(this.textBoxPlayer4Name);
             this.player4Panel.Controls.Add(this.player4AdditionalInfo);
             this.player4Panel.Controls.Add(this.player4ScorePanel);
             this.player4Panel.Controls.Add(this.player4ThrowLights);
-            this.player4Panel.Controls.Add(this.labelPlayer4Name);
             this.player4Panel.Location = new System.Drawing.Point(1399, 533);
             this.player4Panel.Name = "player4Panel";
             this.player4Panel.Size = new System.Drawing.Size(500, 500);
             this.player4Panel.TabIndex = 7;
             this.player4Panel.Visible = false;
             // 
-            // player4CurrentTarget
+            // textBoxPlayer4Name
             // 
-            this.player4CurrentTarget.AutoSize = true;
-            this.player4CurrentTarget.Location = new System.Drawing.Point(96, 0);
-            this.player4CurrentTarget.Name = "player4CurrentTarget";
-            this.player4CurrentTarget.Size = new System.Drawing.Size(13, 13);
-            this.player4CurrentTarget.TabIndex = 4;
-            this.player4CurrentTarget.Text = "5";
+            this.textBoxPlayer4Name.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxPlayer4Name.Location = new System.Drawing.Point(7, 4);
+            this.textBoxPlayer4Name.Name = "textBoxPlayer4Name";
+            this.textBoxPlayer4Name.ReadOnly = true;
+            this.textBoxPlayer4Name.Size = new System.Drawing.Size(52, 13);
+            this.textBoxPlayer4Name.TabIndex = 9;
+            this.textBoxPlayer4Name.Text = "Spieler 4";
+            this.textBoxPlayer4Name.Enter += new System.EventHandler(this.TextBoxPlayer4NameEnter);
+            this.textBoxPlayer4Name.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxPlayer4NameKeyPress);
+            this.textBoxPlayer4Name.Leave += new System.EventHandler(this.TextBoxPlayer4NameLeave);
             // 
-            // player4CurrentTargetLabel
+            // player4AdditionalInfo
             // 
-            this.player4CurrentTargetLabel.AutoSize = true;
-            this.player4CurrentTargetLabel.Location = new System.Drawing.Point(3, 0);
-            this.player4CurrentTargetLabel.Name = "player4CurrentTargetLabel";
-            this.player4CurrentTargetLabel.Size = new System.Drawing.Size(87, 13);
-            this.player4CurrentTargetLabel.TabIndex = 3;
-            this.player4CurrentTargetLabel.Text = "zu treffende Zahl";
-            // 
-            // player4ThrowLights
-            // 
-            this.player4ThrowLights.Image = global::Darts_2012.Properties.Resources.noThrowLeft;
-            this.player4ThrowLights.Location = new System.Drawing.Point(59, 4);
-            this.player4ThrowLights.Name = "player4ThrowLights";
-            this.player4ThrowLights.Size = new System.Drawing.Size(45, 15);
-            this.player4ThrowLights.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.player4ThrowLights.TabIndex = 2;
-            this.player4ThrowLights.TabStop = false;
-            // 
-            // labelPlayer4Name
-            // 
-            this.labelPlayer4Name.AutoSize = true;
-            this.labelPlayer4Name.Location = new System.Drawing.Point(4, 4);
-            this.labelPlayer4Name.Name = "labelPlayer4Name";
-            this.labelPlayer4Name.Size = new System.Drawing.Size(48, 13);
-            this.labelPlayer4Name.TabIndex = 0;
-            this.labelPlayer4Name.Text = "Spieler 4";
-            // 
-            // player3ScorePanel
-            // 
-            this.player3ScorePanel.Controls.Add(this.player3CurrentTargetLabel);
-            this.player3ScorePanel.Controls.Add(this.player3CurrentTarget);
-            this.player3ScorePanel.Location = new System.Drawing.Point(0, 55);
-            this.player3ScorePanel.Name = "player3ScorePanel";
-            this.player3ScorePanel.Size = new System.Drawing.Size(500, 50);
-            this.player3ScorePanel.TabIndex = 5;
+            this.player4AdditionalInfo.AutoSize = true;
+            this.player4AdditionalInfo.Location = new System.Drawing.Point(4, 160);
+            this.player4AdditionalInfo.Name = "player4AdditionalInfo";
+            this.player4AdditionalInfo.Size = new System.Drawing.Size(61, 13);
+            this.player4AdditionalInfo.TabIndex = 8;
+            this.player4AdditionalInfo.Text = "Zusatzinfos";
             // 
             // player4ScorePanel
             // 
@@ -365,41 +389,33 @@
             this.player4ScorePanel.Size = new System.Drawing.Size(500, 50);
             this.player4ScorePanel.TabIndex = 5;
             // 
-            // player1AdditionalInfo
+            // player4CurrentTargetLabel
             // 
-            this.player1AdditionalInfo.AutoSize = true;
-            this.player1AdditionalInfo.Location = new System.Drawing.Point(4, 160);
-            this.player1AdditionalInfo.Name = "player1AdditionalInfo";
-            this.player1AdditionalInfo.Size = new System.Drawing.Size(61, 13);
-            this.player1AdditionalInfo.TabIndex = 5;
-            this.player1AdditionalInfo.Text = "Zusatzinfos";
+            this.player4CurrentTargetLabel.AutoSize = true;
+            this.player4CurrentTargetLabel.Location = new System.Drawing.Point(3, 0);
+            this.player4CurrentTargetLabel.Name = "player4CurrentTargetLabel";
+            this.player4CurrentTargetLabel.Size = new System.Drawing.Size(87, 13);
+            this.player4CurrentTargetLabel.TabIndex = 3;
+            this.player4CurrentTargetLabel.Text = "zu treffende Zahl";
             // 
-            // player2AdditionalInfo
+            // player4CurrentTarget
             // 
-            this.player2AdditionalInfo.AutoSize = true;
-            this.player2AdditionalInfo.Location = new System.Drawing.Point(4, 160);
-            this.player2AdditionalInfo.Name = "player2AdditionalInfo";
-            this.player2AdditionalInfo.Size = new System.Drawing.Size(61, 13);
-            this.player2AdditionalInfo.TabIndex = 6;
-            this.player2AdditionalInfo.Text = "Zusatzinfos";
+            this.player4CurrentTarget.AutoSize = true;
+            this.player4CurrentTarget.Location = new System.Drawing.Point(96, 0);
+            this.player4CurrentTarget.Name = "player4CurrentTarget";
+            this.player4CurrentTarget.Size = new System.Drawing.Size(13, 13);
+            this.player4CurrentTarget.TabIndex = 4;
+            this.player4CurrentTarget.Text = "5";
             // 
-            // player3AdditionalInfo
+            // player4ThrowLights
             // 
-            this.player3AdditionalInfo.AutoSize = true;
-            this.player3AdditionalInfo.Location = new System.Drawing.Point(4, 160);
-            this.player3AdditionalInfo.Name = "player3AdditionalInfo";
-            this.player3AdditionalInfo.Size = new System.Drawing.Size(61, 13);
-            this.player3AdditionalInfo.TabIndex = 7;
-            this.player3AdditionalInfo.Text = "Zusatzinfos";
-            // 
-            // player4AdditionalInfo
-            // 
-            this.player4AdditionalInfo.AutoSize = true;
-            this.player4AdditionalInfo.Location = new System.Drawing.Point(4, 160);
-            this.player4AdditionalInfo.Name = "player4AdditionalInfo";
-            this.player4AdditionalInfo.Size = new System.Drawing.Size(61, 13);
-            this.player4AdditionalInfo.TabIndex = 8;
-            this.player4AdditionalInfo.Text = "Zusatzinfos";
+            this.player4ThrowLights.Image = global::Darts_2012.Properties.Resources.noThrowLeft;
+            this.player4ThrowLights.Location = new System.Drawing.Point(59, 4);
+            this.player4ThrowLights.Name = "player4ThrowLights";
+            this.player4ThrowLights.Size = new System.Drawing.Size(45, 15);
+            this.player4ThrowLights.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.player4ThrowLights.TabIndex = 2;
+            this.player4ThrowLights.TabStop = false;
             // 
             // Darts
             // 
@@ -433,14 +449,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.player2ThrowLights)).EndInit();
             this.player3Panel.ResumeLayout(false);
             this.player3Panel.PerformLayout();
+            this.player3ScorePanel.ResumeLayout(false);
+            this.player3ScorePanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.player3ThrowLights)).EndInit();
             this.player4Panel.ResumeLayout(false);
             this.player4Panel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.player4ThrowLights)).EndInit();
-            this.player3ScorePanel.ResumeLayout(false);
-            this.player3ScorePanel.PerformLayout();
             this.player4ScorePanel.ResumeLayout(false);
             this.player4ScorePanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.player4ThrowLights)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -454,9 +470,7 @@
         private System.Windows.Forms.ToolStripMenuItem gameToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aroundTheClockToolStripMenuItem;
         private System.Windows.Forms.Panel player1Panel;
-        private System.Windows.Forms.Label labelPlayer1Name;
         private System.Windows.Forms.Panel player2Panel;
-        private System.Windows.Forms.Label labelPlayer2Name;
         private System.Windows.Forms.PictureBox player1ThrowLights;
         private System.Windows.Forms.PictureBox player2ThrowLights;
         private System.Windows.Forms.Label player1CurrentTarget;
@@ -467,12 +481,10 @@
         private System.Windows.Forms.Label player3CurrentTarget;
         private System.Windows.Forms.Label player3CurrentTargetLabel;
         private System.Windows.Forms.PictureBox player3ThrowLights;
-        private System.Windows.Forms.Label labelPlayer3Name;
         private System.Windows.Forms.Panel player4Panel;
         private System.Windows.Forms.Label player4CurrentTarget;
         private System.Windows.Forms.Label player4CurrentTargetLabel;
         private System.Windows.Forms.PictureBox player4ThrowLights;
-        private System.Windows.Forms.Label labelPlayer4Name;
         private System.Windows.Forms.ToolStripMenuItem x01ToolStripMenuItem;
         private System.Windows.Forms.FlowLayoutPanel player1ScorePanel;
         private System.Windows.Forms.FlowLayoutPanel player2ScorePanel;
@@ -482,6 +494,10 @@
         private System.Windows.Forms.Label player2AdditionalInfo;
         private System.Windows.Forms.Label player3AdditionalInfo;
         private System.Windows.Forms.Label player4AdditionalInfo;
+        private System.Windows.Forms.TextBox textBoxPlayer1Name;
+        private System.Windows.Forms.TextBox textBoxPlayer2Name;
+        private System.Windows.Forms.TextBox textBoxPlayer3Name;
+        private System.Windows.Forms.TextBox textBoxPlayer4Name;
 
 
 
